@@ -1,6 +1,6 @@
 <template>
     <div class="fm-tree">
-        <ul class="list-unstyled fm-tree-branch">
+        <ul class="fm-tree-branch">
             <li>
                 <p
                     v-if="rootItem"
