@@ -2,11 +2,6 @@
     <div class="fm-breadcrumb">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb" v-bind:class="[manager === activeManager ? 'active-manager' : 'bg-light']">
-                <li class="breadcrumb-item" v-on:click="selectMainDirectory">
-                    <span class="badge bg-secondary">
-                        <i class="bi bi-hdd"></i>
-                    </span>
-                </li>
                 <li
                     class="breadcrumb-item text-truncate"
                     v-for="(item, index) in breadcrumb"
@@ -80,7 +75,7 @@ export default {
          */
         selectMainDirectory() {
             if (this.selectedDirectory) {
-                this.$store.dispatch(`fm/${this.manager}/selectDirectory`, { path: null, history: true });
+                this.$store.dispatch(`fm/${this.manager}/selectDirectory`, { path: this.$store.state.fm.settings.rootPath ?? null, history: true });
             }
         },
     },

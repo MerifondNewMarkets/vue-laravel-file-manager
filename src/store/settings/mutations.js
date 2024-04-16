@@ -5,10 +5,16 @@ export default {
      * @param data
      */
     manualSettings(state, data) {
+        console.log('manualSettings', data);
         // overwrite headers - Axios
         if (Object.prototype.hasOwnProperty.call(data, 'headers')) {
             state.headers = data.headers;
         }
+
+        if (Object.prototype.hasOwnProperty.call(data, 'rootPath')) {
+            state.rootPath = data.rootPath;
+        }
+
         // base url - axios
         if (Object.prototype.hasOwnProperty.call(data, 'baseUrl')) {
             state.baseUrl = data.baseUrl;
@@ -21,6 +27,11 @@ export default {
         if (Object.prototype.hasOwnProperty.call(data, 'lang')) {
             state.lang = data.lang;
         }
+        // language
+        if (Object.prototype.hasOwnProperty.call(data, 'rootPath')) {
+            state.rootPath = data.rootPath;
+        }
+        console.log('state.rootPath', state.rootPath);
         // add new translation
         if (Object.prototype.hasOwnProperty.call(data, 'translation')) {
             state.translations[data.translation.name] = Object.freeze(data.translation.content);
@@ -88,6 +99,7 @@ export default {
         if (!state.windowsConfig) state.windowsConfig = data.windowsConfig;
         state.acl = data.acl;
         state.hiddenFiles = data.hiddenFiles;
+        // state.rootPath = data.rootPath;
     },
 
     /**

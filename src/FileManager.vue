@@ -74,6 +74,12 @@ export default {
                 return {};
             },
         },
+        rootPath: {
+            type: String,
+            default() {
+                return null;
+            },
+        },
     },
     data() {
         return {
@@ -84,8 +90,13 @@ export default {
         };
     },
     created() {
+        console.log('FileManager created');
+        console.log('merged', this.mergedSettings);
+        console.log('rootPath', this.settings);
+        console.log('setttings', this.rootPath);
+
         // manual settings
-        this.$store.commit('fm/settings/manualSettings', this.settings);
+        this.$store.commit('fm/settings/manualSettings', this.mergedSettings);
 
         // initiate Axios
         this.$store.commit('fm/settings/initAxiosSettings');
@@ -114,6 +125,12 @@ export default {
             showModal: (state) => state.modal.showModal,
             fullScreen: (state) => state.settings.fullScreen,
         }),
+        mergedSettings: function () {
+            return {
+                ...this.settings,
+                rootPath: this.rootPath,
+            };
+        },
     },
     methods: {
         /**

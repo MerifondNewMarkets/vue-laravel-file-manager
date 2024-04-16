@@ -55,6 +55,10 @@ export default {
          * @return {boolean}
          */
         isRootPath() {
+            // if root path is set => check if selected directory is root path
+            if (this.$store.state.fm.settings.rootPath) {
+                return this.$store.state.fm[this.manager].selectedDirectory === this.$store.state.fm.settings.rootPath;
+            }
             return this.$store.state.fm[this.manager].selectedDirectory === null;
         },
     },

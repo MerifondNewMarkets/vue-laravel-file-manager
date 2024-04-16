@@ -81,7 +81,7 @@ export default {
 </script>
 
 <style lang="scss">
-.fm-modal {
+div.fm-modal {
     position: absolute;
     z-index: 9998;
     top: 0;

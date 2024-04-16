@@ -8,6 +8,10 @@ export default {
         return state.baseUrl;
     },
 
+    rootPath(state) {
+        return state.rootPath;
+    },
+
     /**
      * Headers
      * @param state

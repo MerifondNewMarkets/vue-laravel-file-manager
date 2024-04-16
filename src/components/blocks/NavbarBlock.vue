@@ -3,7 +3,7 @@
         <div class="row justify-content-between">
             <div class="col-auto">
                 <div class="btn-group" role="group">
-                    <button
+                    <!-- <button
                         type="button"
                         class="btn btn-secondary"
                         v-bind:disabled="backDisabled"
@@ -20,7 +20,7 @@
                         v-on:click="historyForward()"
                     >
                         <i class="bi bi-skip-forward-fill" />
-                    </button>
+                    </button> -->
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -31,14 +31,14 @@
                     </button>
                 </div>
                 <div class="btn-group" role="group">
-                    <button
+                    <!-- <button
                         type="button"
                         class="btn btn-secondary"
                         v-on:click="showModal('NewFileModal')"
                         v-bind:title="lang.btn.file"
                     >
                         <i class="bi bi-file-earmark"></i>
-                    </button>
+                    </button> -->
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -80,15 +80,6 @@
                         type="button"
                         class="btn btn-secondary"
                         v-bind:disabled="!isAnyItemSelected"
-                        v-bind:title="lang.btn.copy"
-                        v-on:click="toClipboard('copy')"
-                    >
-                        <i class="bi bi-files"></i>
-                    </button>
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        v-bind:disabled="!isAnyItemSelected"
                         v-bind:title="lang.btn.cut"
                         v-on:click="toClipboard('cut')"
                     >
@@ -104,16 +95,6 @@
                         <i class="bi bi-clipboard"></i>
                     </button>
                 </div>
-                <div class="btn-group" role="group">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        v-bind:title="lang.btn.hidden"
-                        v-on:click="toggleHidden"
-                    >
-                        <i class="bi" v-bind:class="[hiddenFiles ? 'bi-eye-fill' : 'bi-eye-slash-fill']" />
-                    </button>
-                </div>
             </div>
             <div class="col-auto text-right">
                 <div class="btn-group" role="group">
@@ -126,15 +107,6 @@
                     >
                         <i class="bi bi-view-list"></i>
                     </button>
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        v-bind:class="[viewType === 'grid' ? 'active' : '']"
-                        v-on:click="selectView('grid')"
-                        v-bind:title="lang.btn.grid"
-                    >
-                        <i class="bi bi-grid"></i>
-                    </button>
                 </div>
                 <div class="btn-group" role="group">
                     <button
@@ -145,16 +117,6 @@
                         v-on:click="screenToggle"
                     >
                         <i class="bi bi-arrows-fullscreen"></i>
-                    </button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        v-bind:title="lang.btn.about"
-                        v-on:click="showModal('AboutModal')"
-                    >
-                        <i class="bi bi-question-lg"></i>
                     </button>
                 </div>
             </div>

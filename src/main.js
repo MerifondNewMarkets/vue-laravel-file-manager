@@ -10,5 +10,6 @@ const store = createStore({
     strict: import.meta.env.DEV,
     modules: { fm },
 });
+const mountEl = document.querySelector("#fm");
 
-window.fm = createApp(App).use(store).mount('#fm');
+window.fm = createApp(App, { ...mountEl.dataset }).use(store).mount('#fm');

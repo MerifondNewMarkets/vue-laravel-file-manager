@@ -13,6 +13,7 @@ export default {
     initializeApp({ state, commit, getters, dispatch }) {
         GET.initialize().then((response) => {
             if (response.data.result.status === 'success') {
+
                 commit('settings/initSettings', response.data.config);
                 commit('setDisks', response.data.config.disks);
 
@@ -21,29 +22,8 @@ export default {
                 let rightDisk = response.data.config.rightDisk ? response.data.config.rightDisk : getters.diskList[0];
 
                 // paths
-                let leftPath = response.data.config.leftPath;
-                let rightPath = response.data.config.rightPath;
-
-                // find disk and path settings in the URL
-                if (window.location.search) {
-                    const params = new URLSearchParams(window.location.search);
-
-                    if (params.get('leftDisk')) {
-                        leftDisk = params.get('leftDisk');
-                    }
-
-                    if (params.get('rightDisk')) {
-                        rightDisk = params.get('rightDisk');
-                    }
-
-                    if (params.get('leftPath')) {
-                        leftPath = params.get('leftPath');
-                    }
-
-                    if (params.get('rightPath')) {
-                        rightPath = params.get('rightPath');
-                    }
-                }
+                let leftPath = state.settings.rootPath || response.data.config.leftPath;
+                let rightPath = state.settings.rootPath || response.data.config.rightPath;
 
                 commit('left/setDisk', leftDisk);
 
@@ -77,7 +57,7 @@ export default {
                 } else if (state.settings.windowsConfig === 2) {
                     // if selected left manager and directories tree
                     // init directories tree
-                    dispatch('tree/initTree', leftDisk).then(() => {
+                    dispatch('tree/initTree', leftDisk, state.settings.rootPath).then(() => {
                         if (leftPath) {
                             // reopen folders if path not null
                             dispatch('tree/reopenPath', leftPath);
@@ -123,7 +103,7 @@ export default {
 
                 // reinitialize tree if directories tree is shown
                 if (state.settings.windowsConfig === 2) {
-                    dispatch('tree/initTree', disk);
+                    dispatch('tree/initTree', disk, state.settings.rootPath);
                 }
 
                 // download content for root path
@@ -457,7 +437,7 @@ export default {
     refreshAll({ state, getters, dispatch }) {
         if (state.settings.windowsConfig === 2) {
             // refresh tree
-            return dispatch('tree/initTree', state.left.selectedDisk).then(() =>
+            return dispatch('tree/initTree', state.left.selectedDisk, state.settings.rootPath).then(() =>
                 Promise.all([
                     // reopen folders if need
                     dispatch('tree/reopenPath', getters.selectedDirectory),

@@ -34,6 +34,9 @@ export default {
             // axios headers
             headers: {},
 
+            // rootPath => Lock User in Subdirectory
+            rootPath: null,
+
             // axios default URL
             baseUrl: null,
 

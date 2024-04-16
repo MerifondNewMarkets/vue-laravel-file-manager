@@ -1,7 +1,7 @@
 <template>
     <div class="fm-tree">
-        <div class="fm-tree-disk sticky-top"><i class="bi bi-hdd"></i> {{ selectedDisk }}</div>
-        <branch v-bind:parent-id="0" />
+        <div class="fm-tree-disk sticky-top"><i class="bi bi-hdd"></i> {{ rootItem }}</div>
+        <branch v-bind:parent-id="parentId" />
     </div>
 </template>
 
@@ -18,8 +18,17 @@ export default {
          * Selected Disk
          * @returns {*}
          */
-        selectedDisk() {
+        rootItem() {
+            if (this.$store.getters['fm/settings/rootPath']) {
+                return this.$store.getters['fm/settings/rootPath'];
+            }
             return this.$store.getters['fm/selectedDisk'];
+        },
+        parentId() {
+            if (this.$store.getters['fm/settings/rootPath']) {
+                return this.$store.getters['fm/tree/directories'].find((item) => item.path === this.$store.getters['fm/settings/rootPath'])?.id;
+            }
+            return 0;
         },
     },
 };
