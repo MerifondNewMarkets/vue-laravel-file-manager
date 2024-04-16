@@ -92,7 +92,7 @@ export default {
 </script>
 
 <style lang="scss">
-.fm-tree-branch {
+ul.fm-tree-branch {
     display: table;
     width: 100%;
     padding-left: 1rem;
