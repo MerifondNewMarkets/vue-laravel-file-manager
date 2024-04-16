@@ -124,20 +124,6 @@ export default {
                         name: 'paste',
                         icon: 'bi-clipboard',
                     },
-                    {
-                        name: 'zip',
-                        icon: 'bi-file-zip',
-                    },
-                    {
-                        name: 'unzip',
-                        icon: 'bi-file-zip-fill',
-                    },
-                ],
-                [
-                    {
-                        name: 'delete',
-                        icon: 'bi-trash text-danger',
-                    },
                 ],
                 [
                     {
