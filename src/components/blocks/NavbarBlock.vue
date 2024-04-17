@@ -3,24 +3,6 @@
         <div class="row justify-content-between">
             <div class="col-auto">
                 <div class="btn-group" role="group">
-                    <!-- <button
-                        type="button"
-                        class="btn btn-secondary"
-                        v-bind:disabled="backDisabled"
-                        v-bind:title="lang.btn.back"
-                        v-on:click="historyBack()"
-                    >
-                        <i class="bi bi-skip-backward-fill" />
-                    </button>
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        v-bind:disabled="forwardDisabled"
-                        v-bind:title="lang.btn.forward"
-                        v-on:click="historyForward()"
-                    >
-                        <i class="bi bi-skip-forward-fill" />
-                    </button> -->
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -31,14 +13,6 @@
                     </button>
                 </div>
                 <div class="btn-group" role="group">
-                    <!-- <button
-                        type="button"
-                        class="btn btn-secondary"
-                        v-on:click="showModal('NewFileModal')"
-                        v-bind:title="lang.btn.file"
-                    >
-                        <i class="bi bi-file-earmark"></i>
-                    </button> -->
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -141,25 +115,6 @@ export default {
         },
 
         /**
-         * Back button state
-         * @returns {boolean}
-         */
-        backDisabled() {
-            return !this.$store.state.fm[this.activeManager].historyPointer;
-        },
-
-        /**
-         * Forward button state
-         * @returns {boolean}
-         */
-        forwardDisabled() {
-            return (
-                this.$store.state.fm[this.activeManager].historyPointer ===
-                this.$store.state.fm[this.activeManager].history.length - 1
-            );
-        },
-
-        /**
          * Is any files or directories selected?
          * @returns {boolean}
          */
@@ -216,20 +171,6 @@ export default {
          */
         refreshAll() {
             this.$store.dispatch('fm/refreshAll');
-        },
-
-        /**
-         * History back
-         */
-        historyBack() {
-            this.$store.dispatch(`fm/${this.activeManager}/historyBack`);
-        },
-
-        /**
-         * History forward
-         */
-        historyForward() {
-            this.$store.dispatch(`fm/${this.activeManager}/historyForward`);
         },
 
         /**
