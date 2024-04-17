@@ -80,6 +80,12 @@ export default {
                 return null;
             },
         },
+        hasWriteAccess: {
+            type: Boolean,
+            default() {
+                return null;
+            },
+        }
     },
     data() {
         return {
@@ -129,6 +135,7 @@ export default {
             return {
                 ...this.settings,
                 rootPath: this.rootPath,
+                hasWriteAccess: this.hasWriteAccess,
             };
         },
     },

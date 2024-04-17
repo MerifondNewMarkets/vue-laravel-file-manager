@@ -12,6 +12,10 @@ export default {
         return state.rootPath;
     },
 
+    hasWriteAccess(state) {
+        return state.hasWriteAccess;
+    },
+
     /**
      * Headers
      * @param state

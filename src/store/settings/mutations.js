@@ -15,6 +15,10 @@ export default {
             state.rootPath = data.rootPath;
         }
 
+        if (Object.prototype.hasOwnProperty.call(data, 'hasWriteAccess')) {
+            state.hasWriteAccess = data.hasWriteAccess;
+        }
+
         // base url - axios
         if (Object.prototype.hasOwnProperty.call(data, 'baseUrl')) {
             state.baseUrl = data.baseUrl;

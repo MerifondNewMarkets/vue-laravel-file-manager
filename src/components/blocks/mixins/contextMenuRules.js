@@ -44,6 +44,7 @@ export default {
          * @returns {boolean|*}
          */
         editRule() {
+            if (!this.$store.getters['fm/settings/hasWriteAccess']) return false;
             return !this.multiSelect && this.firstItemType === 'file' && this.canEdit(this.selectedItems[0].extension);
         },
 
@@ -68,6 +69,7 @@ export default {
          * @returns {boolean}
          */
         copyRule() {
+            if (!this.$store.getters['fm/settings/hasWriteAccess']) return false;
             return true;
         },
 
@@ -76,6 +78,7 @@ export default {
          * @returns {boolean}
          */
         cutRule() {
+            if (!this.$store.getters['fm/settings/hasWriteAccess']) return false;
             return true;
         },
 
@@ -84,6 +87,7 @@ export default {
          * @returns {boolean}
          */
         renameRule() {
+            if (!this.$store.getters['fm/settings/hasWriteAccess']) return false;
             return !this.multiSelect;
         },
 
@@ -92,6 +96,7 @@ export default {
          * @returns {boolean}
          */
         pasteRule() {
+            if (!this.$store.getters['fm/settings/hasWriteAccess']) return false;
             return !!this.$store.state.fm.clipboard.type;
         },
 
@@ -100,6 +105,7 @@ export default {
          * @returns {boolean}
          */
         zipRule() {
+            if (!this.$store.getters['fm/settings/hasWriteAccess']) return false;
             return this.selectedDiskDriver === 'local';
         },
 
@@ -108,6 +114,7 @@ export default {
          * @returns {boolean}
          */
         unzipRule() {
+            if (!this.$store.getters['fm/settings/hasWriteAccess']) return false;
             return (
                 this.selectedDiskDriver === 'local' &&
                 !this.multiSelect &&
@@ -121,6 +128,7 @@ export default {
          * @returns {boolean}
          */
         deleteRule() {
+            if (!this.$store.getters['fm/settings/hasWriteAccess']) return false;
             return true;
         },
 

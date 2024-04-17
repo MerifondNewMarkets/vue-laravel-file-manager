@@ -12,7 +12,11 @@
                         <i class="bi bi-arrow-repeat"></i>
                     </button>
                 </div>
-                <div class="btn-group" role="group">
+                <div
+                    v-if="$store.getters['fm/settings/hasWriteAccess']"
+                    class="btn-group"
+                    role="group"
+                >
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -49,7 +53,11 @@
                         <i class="bi bi-trash"></i>
                     </button>
                 </div>
-                <div class="btn-group" role="group">
+                <div
+                    v-if="$store.getters['fm/settings/hasWriteAccess']"
+                    class="btn-group"
+                    role="group"
+                >
                     <button
                         type="button"
                         class="btn btn-secondary"

@@ -37,6 +37,9 @@ export default {
             // rootPath => Lock User in Subdirectory
             rootPath: null,
 
+            // May the user only read or write
+            hasWriteAccess: null,
+
             // axios default URL
             baseUrl: null,
 
