@@ -86,6 +86,10 @@ export default {
                         icon: 'bi-folder2-open',
                     },
                     {
+                        name: 'addToCart',
+                        icon: 'bi-cart-plus',
+                    },
+                    {
                         name: 'audioPlay',
                         icon: 'bi-play',
                     },

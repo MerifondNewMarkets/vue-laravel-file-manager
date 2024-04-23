@@ -2,6 +2,11 @@
 import GET from '../../http/get';
 
 export default {
+
+    addToCart({ state, commit, dispatch, rootState }, { path, history }) {
+        return livewire.emit('addToCart', path)
+    },
+
     /**
      * Load files and folders for the selected directory
      * @param state

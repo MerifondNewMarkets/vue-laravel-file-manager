@@ -5,6 +5,7 @@
 const de = {
     btn: {
         about: 'Über',
+        addToCart: 'in den Warekorb',
         back: 'Zurück',
         cancel: 'Abbrechen',
         clear: 'Leeren',
@@ -33,6 +34,7 @@ const de = {
         title: 'Zwischenablage',
     },
     contextMenu: {
+        addToCart: 'in den Warekorb',
         copy: 'Kopieren',
         cut: 'Ausschneiden',
         delete: 'Löschen',

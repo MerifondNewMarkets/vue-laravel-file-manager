@@ -6,6 +6,13 @@ import HTTP from '../../../http/get';
  */
 export default {
     methods: {
+
+        addToCartAction() {
+            this.$store.dispatch(`fm/${this.$store.state.fm.activeManager}/addToCart`, {
+                path: this.selectedItems[0].path
+            });
+        },
+
         /**
          * Open folder
          */

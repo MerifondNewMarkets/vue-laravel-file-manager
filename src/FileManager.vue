@@ -112,7 +112,23 @@ export default {
 
         // initialize app settings
         this.$store.dispatch('fm/initializeApp');
+
+        // listen for record-updated event, dispatched by livewire
+        // on change. This is to update the root path.
+        window.addEventListener('record-updated', event => {
+            this.$store.commit('fm/settings/manualSettings', { 
+                ...this.mergedSettings,
+                rootPath: event.detail.rootPath,
+            });
+
+            // reinitialize app with new settings. Otherwise, saved
+            // navigation state such as current directory is persisted,
+            // which in turn hinders the new root path from being the
+            // active directory.
+            this.$store.dispatch('fm/initializeApp');
+        })
     },
+
     destroyed() {
         // reset state
         this.$store.dispatch('fm/resetState');

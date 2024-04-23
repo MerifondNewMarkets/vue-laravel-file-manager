@@ -13,6 +13,14 @@ export default {
         },
 
         /**
+         * Open - menu item status - show or hide
+         * @returns {boolean}
+         */
+        addToCartRule() {
+            return true;
+        },
+
+        /**
          * Play audio - menu item status - show or hide
          * @returns {boolean}
          */
