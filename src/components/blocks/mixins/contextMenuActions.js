@@ -9,7 +9,7 @@ export default {
 
         addToCartAction() {
             this.$store.dispatch(`fm/${this.$store.state.fm.activeManager}/addToCart`, {
-                path: this.selectedItems[0].path
+                files: this.selectedItems
             });
         },
 
