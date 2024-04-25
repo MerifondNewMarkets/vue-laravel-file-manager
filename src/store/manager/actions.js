@@ -3,8 +3,8 @@ import GET from '../../http/get';
 
 export default {
 
-    addToCart({ state, commit, dispatch, rootState }, { files, history }) {
-        return livewire.emit('addToCart', files)
+    addToCart({ state, commit, dispatch, rootState }, { files, rootPath, recordType, recordId }) {
+        return livewire.emit('addToCart', files, rootPath, recordType, recordId)
     },
 
     /**

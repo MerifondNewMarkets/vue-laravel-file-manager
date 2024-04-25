@@ -80,6 +80,18 @@ export default {
                 return null;
             },
         },
+        recordType: {
+            type: String,
+            default() {
+                return null;
+            },
+        },
+        recordId: {
+            type: String,
+            default() {
+                return null;
+            },
+        },
         hasWriteAccess: {
             type: Boolean,
             default() {
@@ -97,6 +109,8 @@ export default {
     },
     created() {
         console.log('FileManager created');
+        console.log('recordId', this.recordId);
+        console.log('recordType', this.recordType);
         console.log('merged', this.mergedSettings);
         console.log('rootPath', this.settings);
         console.log('setttings', this.rootPath);
@@ -116,9 +130,11 @@ export default {
         // listen for record-updated event, dispatched by livewire
         // on change. This is to update the root path.
         window.addEventListener('record-updated', event => {
-            this.$store.commit('fm/settings/manualSettings', { 
+            this.$store.commit('fm/settings/manualSettings', {
                 ...this.mergedSettings,
                 rootPath: event.detail.rootPath,
+                recordType: event.detail.recordType,
+                recordId: event.detail.recordId,
             });
 
             // reinitialize app with new settings. Otherwise, saved
@@ -151,6 +167,8 @@ export default {
             return {
                 ...this.settings,
                 rootPath: this.rootPath,
+                recordType: this.recordType,
+                recordId: this.recordId,
                 hasWriteAccess: this.hasWriteAccess,
             };
         },

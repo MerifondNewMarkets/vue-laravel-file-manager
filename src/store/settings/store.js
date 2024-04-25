@@ -37,6 +37,12 @@ export default {
             // rootPath => Lock User in Subdirectory
             rootPath: null,
 
+            // recordType the type of the viewed record
+            recordType: null,
+
+            // recordId the ID of the viewed record
+            recordId: null,
+
             // May the user only read or write
             hasWriteAccess: null,
 

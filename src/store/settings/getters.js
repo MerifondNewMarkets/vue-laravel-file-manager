@@ -12,6 +12,14 @@ export default {
         return state.rootPath;
     },
 
+    recordType(state) {
+        return state.recordType;
+    },
+
+    recordId(state) {
+        return state.recordId;
+    },
+
     hasWriteAccess(state) {
         return state.hasWriteAccess;
     },

@@ -15,6 +15,14 @@ export default {
             state.rootPath = data.rootPath;
         }
 
+        if (Object.prototype.hasOwnProperty.call(data, 'recordType')) {
+            state.recordType = data.recordType;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(data, 'recordId')) {
+            state.recordId = data.recordId;
+        }
+
         if (Object.prototype.hasOwnProperty.call(data, 'hasWriteAccess')) {
             state.hasWriteAccess = data.hasWriteAccess;
         }
