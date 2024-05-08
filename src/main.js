@@ -1,3 +1,6 @@
+// styles
+import './assets/main.scss';
+
 import { createApp } from 'vue';
 import { createStore } from 'vuex';
 // store
