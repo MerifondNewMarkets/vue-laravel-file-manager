@@ -37,11 +37,13 @@ export default {
 </script>
 
 <style lang="scss">
-.fm-content {
-    padding-left: 1rem;
+#fm {
+    .fm-content {
+        padding-left: 1rem;
 
-    .fm-content-body {
-        overflow: auto;
+        .fm-content-body {
+            overflow: auto;
+        }
     }
 }
 </style>

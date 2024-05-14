@@ -5,7 +5,6 @@ export default {
      * @param data
      */
     manualSettings(state, data) {
-        console.log('manualSettings', data);
         // overwrite headers - Axios
         if (Object.prototype.hasOwnProperty.call(data, 'headers')) {
             state.headers = data.headers;
@@ -43,7 +42,6 @@ export default {
         if (Object.prototype.hasOwnProperty.call(data, 'rootPath')) {
             state.rootPath = data.rootPath;
         }
-        console.log('state.rootPath', state.rootPath);
         // add new translation
         if (Object.prototype.hasOwnProperty.call(data, 'translation')) {
             state.translations[data.translation.name] = Object.freeze(data.translation.content);

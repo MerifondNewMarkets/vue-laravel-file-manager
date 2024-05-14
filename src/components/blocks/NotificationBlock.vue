@@ -51,34 +51,36 @@ export default {
 </script>
 
 <style lang="scss">
-.fm-notification {
-    position: absolute;
-    right: 1rem;
-    bottom: 0;
-    z-index: 9999;
-    width: 350px;
-    display: block;
-    transition: opacity 0.4s ease;
-    overflow: auto;
+#fm {
+    .fm-notification {
+        position: absolute;
+        right: 1rem;
+        bottom: 0;
+        z-index: 9999;
+        width: 350px;
+        display: block;
+        transition: opacity 0.4s ease;
+        overflow: auto;
 
-    .fm-notification-item {
-        padding: 0.75rem 1.25rem;
-        margin-bottom: 1rem;
-        border: 1px solid;
-        border-radius: 0.25rem;
-    }
+        .fm-notification-item {
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 1rem;
+            border: 1px solid;
+            border-radius: 0.25rem;
+        }
 
-    .notify-enter-active {
-        transition: all 0.3s ease;
-    }
+        .notify-enter-active {
+            transition: all 0.3s ease;
+        }
 
-    .notify-leave-active {
-        transition: all 0.8s ease;
-    }
+        .notify-leave-active {
+            transition: all 0.8s ease;
+        }
 
-    .notify-enter,
-    .notify-leave-to {
-        opacity: 0;
+        .notify-enter,
+        .notify-leave-to {
+            opacity: 0;
+        }
     }
 }
 </style>

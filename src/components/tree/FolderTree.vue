@@ -74,29 +74,31 @@ export default {
 </script>
 
 <style lang="scss">
-.root-item {
-    cursor: pointer;
-    &:hover,
-    &.selected {
-        background-color: #f8f9fa;
+#fm {
+    .root-item {
+        cursor: pointer;
+        &:hover,
+        &.selected {
+            background-color: #f8f9fa;
 
+        }
     }
-}
-.fm-tree {
-    overflow: auto;
-    border-right: 1px solid #6c757d;
+    .fm-tree {
+        overflow: auto;
+        border-right: 1px solid #6c757d;
 
-    & > .fm-tree-branch {
-        padding-left: 0;
-    }
+        & > .fm-tree-branch {
+            padding-left: 0;
+        }
 
-    .fm-tree-disk {
-        padding: 0.2rem 0.3rem;
-        background-color: #cff4fc;
-    }
+        .fm-tree-disk {
+            padding: 0.2rem 0.3rem;
+            background-color: #cff4fc;
+        }
 
-    .fm-tree-disk > i {
-        padding-right: 0.4rem;
+        .fm-tree-disk > i {
+            padding-right: 0.4rem;
+        }
     }
 }
 </style>

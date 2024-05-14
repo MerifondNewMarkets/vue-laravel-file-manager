@@ -92,39 +92,41 @@ export default {
 </script>
 
 <style lang="scss">
-ul.fm-tree-branch {
-    display: table;
-    width: 100%;
-    padding-left: 1rem;
+#fm {
+    ul.fm-tree-branch {
+        display: table;
+        width: 100%;
+        padding-left: 1rem;
 
-    li > p {
-        margin-bottom: 0;
-        padding: 0.4rem 0.4rem;
-        white-space: nowrap;
-        cursor: pointer;
+        li > p {
+            margin-bottom: 0;
+            padding: 0.4rem 0.4rem;
+            white-space: nowrap;
+            cursor: pointer;
 
-        &:hover,
-        &.selected {
-            background-color: #f8f9fa;
+            &:hover,
+            &.selected {
+                background-color: #f8f9fa;
+            }
+        }
+
+        .bi.bi-dash,
+        .bi.bi-dash-square,
+        .bi.bi-plus-square {
+            font-size: 0.9rem;
+            padding-right: 0.4rem;
         }
     }
 
-    .bi.bi-dash,
-    .bi.bi-dash-square,
-    .bi.bi-plus-square {
-        font-size: 0.9rem;
-        padding-right: 0.4rem;
+    .fade-tree-enter-active,
+    .fade-tree-leave-active {
+        transition: all 0.3s ease;
     }
-}
 
-.fade-tree-enter-active,
-.fade-tree-leave-active {
-    transition: all 0.3s ease;
-}
-
-.fade-tree-enter,
-.fade-tree-leave-to {
-    transform: translateX(20px);
-    opacity: 0;
+    .fade-tree-enter,
+    .fade-tree-leave-to {
+        transform: translateX(20px);
+        opacity: 0;
+    }
 }
 </style>

@@ -86,24 +86,26 @@ export default {
 </script>
 
 <style lang="scss">
-.fm-thumbnail {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#fm {
+    .fm-thumbnail {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-    .img-thumbnail {
-        width: 88px;
-        height: 88px;
-    }
+        .img-thumbnail {
+            width: 88px;
+            height: 88px;
+        }
 
-    .fade-enter-active,
-    .fade-leave-active {
-        transition: opacity 0.3s;
-    }
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity 0.3s;
+        }
 
-    .fade-enter,
-    .fade-leave-to {
-        opacity: 0;
+        .fade-enter,
+        .fade-leave-to {
+            opacity: 0;
+        }
     }
 }
 </style>

@@ -139,35 +139,37 @@ export default {
 </script>
 
 <style lang="scss">
-.fm-context-menu {
-    position: absolute;
-    z-index: 9997;
-    background-color: white;
-    box-shadow: 3px 2px 5px gray;
-    border-radius: 5px;
+#fm {
+    .fm-context-menu {
+        position: absolute;
+        z-index: 9997;
+        background-color: white;
+        box-shadow: 3px 2px 5px gray;
+        border-radius: 5px;
 
-    &:focus {
-        outline: none;
-    }
-
-    .list-unstyled {
-        margin-bottom: 0;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-    }
-
-    ul > li {
-        padding: 0.4rem 1rem;
-    }
-
-    ul > li:not(.disabled) {
-        cursor: pointer;
-
-        &:hover {
-            background-color: #f8f9fa;
+        &:focus {
+            outline: none;
         }
 
-        i {
-            padding-right: 1.5rem;
+        .list-unstyled {
+            margin-bottom: 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+        }
+
+        ul > li {
+            padding: 0.4rem 1rem;
+        }
+
+        ul > li:not(.disabled) {
+            cursor: pointer;
+
+            &:hover {
+                background-color: #f8f9fa;
+            }
+
+            i {
+                padding-right: 1.5rem;
+            }
         }
     }
 }

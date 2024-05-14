@@ -108,13 +108,6 @@ export default {
         };
     },
     created() {
-        console.log('FileManager created');
-        console.log('recordId', this.recordId);
-        console.log('recordType', this.recordType);
-        console.log('merged', this.mergedSettings);
-        console.log('rootPath', this.settings);
-        console.log('setttings', this.rootPath);
-
         // manual settings
         this.$store.commit('fm/settings/manualSettings', this.mergedSettings);
 
@@ -299,72 +292,74 @@ export default {
 </script>
 
 <style lang="scss">
-.fm {
-    position: relative;
-    height: 100%;
-    padding: 1rem;
-    background-color: white;
-
-    &:-moz-full-screen {
-        background-color: white;
-    }
-
-    &:-webkit-full-screen {
-        background-color: white;
-    }
-
-    &:fullscreen {
-        background-color: white;
-    }
-
-    .fm-body {
-        flex: 1 1 auto;
-        overflow: hidden;
+#fm {
+    .fm {
         position: relative;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        border-top: 1px solid #6c757d;
-        border-bottom: 1px solid #6c757d;
+        height: 100%;
+        padding: 1rem;
+        background-color: white;
+
+        &:-moz-full-screen {
+            background-color: white;
+        }
+
+        &:-webkit-full-screen {
+            background-color: white;
+        }
+
+        &:fullscreen {
+            background-color: white;
+        }
+
+        .fm-body {
+            flex: 1 1 auto;
+            overflow: hidden;
+            position: relative;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            border-top: 1px solid #6c757d;
+            border-bottom: 1px solid #6c757d;
+        }
+
+        .unselectable {
+            user-select: none;
+        }
     }
 
-    .unselectable {
-        user-select: none;
+    .fm-error {
+        color: white;
+        background-color: #dc3545;
+        border-color: #dc3545;
     }
-}
 
-.fm-error {
-    color: white;
-    background-color: #dc3545;
-    border-color: #dc3545;
-}
+    .fm-danger {
+        color: #dc3545;
+        background-color: white;
+        border-color: #dc3545;
+    }
 
-.fm-danger {
-    color: #dc3545;
-    background-color: white;
-    border-color: #dc3545;
-}
+    .fm-warning {
+        color: #ffc107;
+        background-color: white;
+        border-color: #ffc107;
+    }
 
-.fm-warning {
-    color: #ffc107;
-    background-color: white;
-    border-color: #ffc107;
-}
+    .fm-success {
+        color: #198754;
+        background-color: white;
+        border-color: #198754;
+    }
 
-.fm-success {
-    color: #198754;
-    background-color: white;
-    border-color: #198754;
-}
+    .fm-info {
+        color: #0dcaf0;
+        background-color: white;
+        border-color: #0dcaf0;
+    }
 
-.fm-info {
-    color: #0dcaf0;
-    background-color: white;
-    border-color: #0dcaf0;
-}
-
-.fm.fm-full-screen {
-    width: 100%;
-    height: 100%;
-    padding-bottom: 0;
+    .fm.fm-full-screen {
+        width: 100%;
+        height: 100%;
+        padding-bottom: 0;
+    }
 }
 </style>

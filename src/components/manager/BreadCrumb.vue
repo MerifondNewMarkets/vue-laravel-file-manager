@@ -99,20 +99,22 @@ export default {
 </script>
 
 <style lang="scss">
-.fm-breadcrumb {
-    .breadcrumb {
-        flex-wrap: nowrap;
-        padding: 0.2rem 0.3rem;
-        margin-bottom: 0.5rem;
+#fm {
+    .fm-breadcrumb {
+        .breadcrumb {
+            flex-wrap: nowrap;
+            padding: 0.2rem 0.3rem;
+            margin-bottom: 0.5rem;
 
-        &.active-manager {
-            background-color: #cff4fc;
-        }
+            &.active-manager {
+                background-color: #cff4fc;
+            }
 
-        .breadcrumb-item:not(.active):hover {
-            cursor: pointer;
-            font-weight: normal;
-            color: #6c757d;
+            .breadcrumb-item:not(.active):hover {
+                cursor: pointer;
+                font-weight: normal;
+                color: #6c757d;
+            }
         }
     }
 }

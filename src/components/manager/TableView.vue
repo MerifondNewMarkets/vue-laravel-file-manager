@@ -117,49 +117,51 @@ export default {
 </script>
 
 <style lang="scss">
-.fm-table {
-    thead th {
-        background: white;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        cursor: pointer;
-        border-top: none;
+#fm {
+    .fm-table {
+        thead th {
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            cursor: pointer;
+            border-top: none;
 
-        &:hover {
+            &:hover {
+                background-color: #f8f9fa;
+            }
+
+            & > i {
+                padding-left: 0.5rem;
+            }
+        }
+
+        td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        tr:hover {
             background-color: #f8f9fa;
         }
 
-        & > i {
-            padding-left: 0.5rem;
+        .w-10 {
+            width: 10%;
         }
-    }
 
-    td {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+        .w-65 {
+            width: 65%;
+        }
 
-    tr:hover {
-        background-color: #f8f9fa;
-    }
+        .fm-content-item {
+            cursor: pointer;
+            max-width: 1px;
+        }
 
-    .w-10 {
-        width: 10%;
-    }
-
-    .w-65 {
-        width: 65%;
-    }
-
-    .fm-content-item {
-        cursor: pointer;
-        max-width: 1px;
-    }
-
-    .text-hidden {
-        color: #cdcdcd;
+        .text-hidden {
+            color: #cdcdcd;
+        }
     }
 }
 </style>

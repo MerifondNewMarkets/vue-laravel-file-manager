@@ -81,32 +81,34 @@ export default {
 </script>
 
 <style lang="scss">
-div.fm-modal {
-    position: absolute;
-    z-index: 9998;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.35);
-    display: block;
-    transition: opacity 0.4s ease;
-    overflow: auto;
+#fm {
+    div.fm-modal {
+        position: absolute;
+        z-index: 9998;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.35);
+        display: block;
+        transition: opacity 0.4s ease;
+        overflow: auto;
 
-    .modal-xl {
-        max-width: 96%;
+        .modal-xl {
+            max-width: 96%;
+        }
     }
-}
 
-.fm-modal-enter-active,
-.fm-modal-leave-active {
-    transition: opacity 0.5s;
-}
+    .fm-modal-enter-active,
+    .fm-modal-leave-active {
+        transition: opacity 0.5s;
+    }
 
-.fm-modal-enter,
-.fm-modal-leave-to {
-    opacity: 0;
+    .fm-modal-enter,
+    .fm-modal-leave-to {
+        opacity: 0;
+    }
 }
 </style>

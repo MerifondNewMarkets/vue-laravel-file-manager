@@ -33,9 +33,12 @@ export default {
 </script>
 
 <style lang="scss">
-.fm-additions-file-list {
-    .bi {
-        padding-right: 0.5rem;
+#fm {
+    .fm-additions-file-list {
+        .bi {
+            padding-right: 0.5rem;
+        }
     }
 }
+
 </style>

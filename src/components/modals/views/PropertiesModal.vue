@@ -164,32 +164,35 @@ export default {
 </script>
 
 <style lang="scss">
-.fm-modal-properties .modal-body {
-    .row {
-        margin-bottom: 0.3rem;
-        padding-top: 0.3rem;
-        padding-bottom: 0.3rem;
+#fm {
+    .fm-modal-properties .modal-body {
+        .row {
+            margin-bottom: 0.3rem;
+            padding-top: 0.3rem;
+            padding-bottom: 0.3rem;
 
-        .bi-files {
-            display: none;
-            cursor: pointer;
-        }
+            .bi-files {
+                display: none;
+                cursor: pointer;
+            }
 
-        &:hover {
-            background-color: #f8f9fa;
+            &:hover {
+                background-color: #f8f9fa;
 
-            & .bi-files {
-                display: block;
+                & .bi-files {
+                    display: block;
+                }
             }
         }
-    }
 
-    .col-2 {
-        font-weight: bold;
-    }
+        .col-2 {
+            font-weight: bold;
+        }
 
-    .col-9 {
-        word-wrap: break-word;
+        .col-9 {
+            word-wrap: break-word;
+        }
     }
 }
+
 </style>

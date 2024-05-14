@@ -269,11 +269,13 @@ export default {
 </script>
 
 <style lang="scss">
-.fm-navbar {
-    flex: 0 0 auto;
+#fm {
+    .fm-navbar {
+        flex: 0 0 auto;
 
-    .col-auto > .btn-group:not(:last-child) {
-        margin-right: 0.4rem;
+        .col-auto > .btn-group:not(:last-child) {
+            margin-right: 0.4rem;
+        }
     }
 }
 </style>

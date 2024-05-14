@@ -263,64 +263,66 @@ export default {
 <style lang="scss">
 @import 'cropperjs/dist/cropper.css';
 
-.fm-additions-cropper {
-    overflow: hidden;
-
-    button > i {
-        color: white;
-        font-weight: bold;
-    }
-
-    & > .row {
-        flex-wrap: nowrap;
-    }
-
-    .cropper-block {
+#fm {
+    .fm-additions-cropper {
         overflow: hidden;
 
-        img {
-            max-width: 100%;
-        }
-    }
-
-    .col-sm-3 {
-        overflow: auto;
-
-        &::-webkit-scrollbar {
-            display: none;
-        }
-    }
-
-    .cropper-preview {
-        margin-bottom: 1rem;
-        overflow: hidden;
-        height: 200px;
-
-        img {
-            max-width: 100%;
-        }
-    }
-
-    .cropper-data {
-        padding-left: 1rem;
-        padding-right: 1rem;
-
-        & > .input-group {
-            margin-bottom: 0.5rem;
+        button > i {
+            color: white;
+            font-weight: bold;
         }
 
-        .input-group > .input-group-text:first-child {
-            min-width: 4rem;
+        & > .row {
+            flex-wrap: nowrap;
         }
 
-        .input-group > .input-group-text:last-child {
-            min-width: 3rem;
-        }
-    }
+        .cropper-block {
+            overflow: hidden;
 
-    & > .d-flex {
-        padding: 1rem;
-        border-top: 1px solid #e9ecef;
+            img {
+                max-width: 100%;
+            }
+        }
+
+        .col-sm-3 {
+            overflow: auto;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+        .cropper-preview {
+            margin-bottom: 1rem;
+            overflow: hidden;
+            height: 200px;
+
+            img {
+                max-width: 100%;
+            }
+        }
+
+        .cropper-data {
+            padding-left: 1rem;
+            padding-right: 1rem;
+
+            & > .input-group {
+                margin-bottom: 0.5rem;
+            }
+
+            .input-group > .input-group-text:first-child {
+                min-width: 4rem;
+            }
+
+            .input-group > .input-group-text:last-child {
+                min-width: 3rem;
+            }
+        }
+
+        & > .d-flex {
+            padding: 1rem;
+            border-top: 1px solid #e9ecef;
+        }
     }
 }
 </style>
