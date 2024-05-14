@@ -10,7 +10,6 @@ export default {
         addToCartAction() {
             this.$store.dispatch(`fm/${this.$store.state.fm.activeManager}/addToCart`, {
                 files: this.selectedItems,
-                rootPath: this.$store.getters[`fm/settings/rootPath`],
                 recordId: this.$store.getters[`fm/settings/recordId`],
                 recordType: this.$store.getters[`fm/settings/recordType`],
             });

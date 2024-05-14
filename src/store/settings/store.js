@@ -96,28 +96,12 @@ export default {
                         icon: 'bi-cart-plus',
                     },
                     {
-                        name: 'audioPlay',
-                        icon: 'bi-play',
-                    },
-                    {
-                        name: 'videoPlay',
-                        icon: 'bi-play',
-                    },
-                    {
                         name: 'view',
                         icon: 'bi-eye',
                     },
                     {
-                        name: 'edit',
-                        icon: 'bi-pen',
-                    },
-                    {
                         name: 'select',
                         icon: 'bi-check2',
-                    },
-                    {
-                        name: 'download',
-                        icon: 'bi-download',
                     },
                 ],
                 [
@@ -138,65 +122,59 @@ export default {
                         icon: 'bi-clipboard',
                     },
                 ],
-                [
-                    {
-                        name: 'properties',
-                        icon: 'bi-card-list',
-                    },
-                ],
             ],
 
             // Image extensions for view and preview
             imageExtensions: ['png', 'jpg', 'jpeg', 'gif', 'webp'],
 
             // Image extensions for cropping
-            cropExtensions: ['png', 'jpg', 'jpeg', 'webp'],
+            cropExtensions: [],
 
             // audio extensions for play
-            audioExtensions: ['ogg', 'mp3', 'aac', 'wav'],
+            audioExtensions: [],
 
             // video extensions for play
-            videoExtensions: ['webm', 'mp4'],
+            videoExtensions: [],
 
             // File extensions for code editor
             textExtensions: {
-                sh: 'text/x-sh',
-                // styles
-                css: 'text/css',
-                less: 'text/x-less',
-                sass: 'text/x-sass',
-                scss: 'text/x-scss',
-                html: 'text/html',
-                // js
-                js: 'text/javascript',
-                ts: 'text/typescript',
-                vue: 'text/x-vue',
-                // text
-                htaccess: 'text/plain',
-                env: 'text/plain',
-                txt: 'text/plain',
-                log: 'text/plain',
-                ini: 'text/x-ini',
-                xml: 'application/xml',
-                md: 'text/x-markdown',
-                // c-like
-                java: 'text/x-java',
-                c: 'text/x-csrc',
-                cpp: 'text/x-c++src',
-                cs: 'text/x-csharp',
-                scl: 'text/x-scala',
-                php: 'application/x-httpd-php',
-                // DB
-                sql: 'text/x-sql',
-                // other
-                pl: 'text/x-perl',
-                py: 'text/x-python',
-                lua: 'text/x-lua',
-                swift: 'text/x-swift',
-                rb: 'text/x-ruby',
-                go: 'text/x-go',
-                yaml: 'text/x-yaml',
-                json: 'application/json',
+                // sh: 'text/x-sh',
+                // // styles
+                // css: 'text/css',
+                // less: 'text/x-less',
+                // sass: 'text/x-sass',
+                // scss: 'text/x-scss',
+                // html: 'text/html',
+                // // js
+                // js: 'text/javascript',
+                // ts: 'text/typescript',
+                // vue: 'text/x-vue',
+                // // text
+                // htaccess: 'text/plain',
+                // env: 'text/plain',
+                // txt: 'text/plain',
+                // log: 'text/plain',
+                // ini: 'text/x-ini',
+                // xml: 'application/xml',
+                // md: 'text/x-markdown',
+                // // c-like
+                // java: 'text/x-java',
+                // c: 'text/x-csrc',
+                // cpp: 'text/x-c++src',
+                // cs: 'text/x-csharp',
+                // scl: 'text/x-scala',
+                // php: 'application/x-httpd-php',
+                // // DB
+                // sql: 'text/x-sql',
+                // // other
+                // pl: 'text/x-perl',
+                // py: 'text/x-python',
+                // lua: 'text/x-lua',
+                // swift: 'text/x-swift',
+                // rb: 'text/x-ruby',
+                // go: 'text/x-go',
+                // yaml: 'text/x-yaml',
+                // json: 'application/json',
             },
         };
     },
