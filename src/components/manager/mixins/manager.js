@@ -151,6 +151,11 @@ export default {
          * @param extension
          */
         selectAction(path, extension) {
+            // only the content index can be selected
+            if (this.$store.state.fm.settings.contentIndex && this.$store.state.fm.settings.contentIndex !== path) {
+                return;
+            }
+
             // if is set fileCallback
             if (this.$store.state.fm.fileCallback) {
                 this.$store

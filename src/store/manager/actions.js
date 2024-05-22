@@ -7,6 +7,14 @@ export default {
         return livewire.emit('addToCart', files, recordType, recordId)
     },
 
+    setAsContentIndex({ state, commit, dispatch, rootState }, { file }) {
+        return livewire.emit('setContentIndex', file);
+    },
+
+    emitSelect({ state, commit, dispatch, rootState }, { path }) {
+        return livewire.emit('selectedFile', path)
+    },
+
     /**
      * Load files and folders for the selected directory
      * @param state

@@ -78,7 +78,7 @@
                     </button>
                 </div>
             </div>
-            <div class="col-auto text-right">
+            <div v-if="isInSelectMode" class="col-auto text-right">
                 <div class="btn-group" role="group">
                     <button
                         type="button"
@@ -131,6 +131,10 @@ export default {
                 this.$store.state.fm[this.activeManager].selected.files.length > 0 ||
                 this.$store.state.fm[this.activeManager].selected.directories.length > 0
             );
+        },
+
+        isInSelectMode () {
+            return this.$store.state.fm[this.activeManager].isSelectMode;
         },
 
         /**

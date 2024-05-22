@@ -53,7 +53,7 @@
                     >
                         <i class="bi bi-folder"></i> {{ directory.basename }}
                     </td>
-                    <td />
+                    <td></td>
                     <td>{{ lang.manager.table.folder }}</td>
                     <td>
                         {{ timestampToDate(directory.timestamp) }}
@@ -62,13 +62,18 @@
                 <tr
                     v-for="(file, index) in files"
                     v-bind:key="`f-${index}`"
-                    v-bind:class="{ 'table-info': checkSelect('files', file.path) }"
+                    v-bind:class="{ 'table-info': checkSelect('files', file.path), 'is-content-index': isContentIndex(file) }"
                     v-on:click="selectItem('files', file.path, $event)"
                     v-on:dblclick="selectAction(file.path, file.extension)"
                     v-on:contextmenu.prevent="contextMenu(file, $event)"
+                    v-tooltip:left="isContentIndex(file) ? 'Inhaltsverzeichnis': false"
                 >
                     <td class="fm-content-item unselectable" v-bind:class="acl && file.acl === 0 ? 'text-hidden' : ''">
-                        <i class="bi" v-bind:class="extensionToIcon(file.extension)" />
+                        <i
+                            v-if="isContentIndex(file)"
+                            class="bi bi-bookmark-star"
+                        ></i>
+                        <i v-else class="bi" v-bind:class="extensionToIcon(file.extension)"></i>
                         {{ file.filename ? file.filename : file.basename }}
                     </td>
                     <td>{{ bytesToHuman(file.size) }}</td>
@@ -112,6 +117,12 @@ export default {
         sortBy(field) {
             this.$store.dispatch(`fm/${this.manager}/sortBy`, { field, direction: null });
         },
+        emitSelect(item) {
+            this.$store.dispatch(`fm/${this.$store.state.fm.activeManager}/emitSelect`, { path: item });
+        },
+        isContentIndex(item) {
+            return this.$store.getters['fm/settings/contentIndex'] === item.path;
+        },
     },
 };
 </script>
@@ -133,6 +144,13 @@ export default {
 
             & > i {
                 padding-left: 0.5rem;
+            }
+        }
+
+        tr.is-content-index {
+            td {
+                background-color: var(--bs-warning);
+                color: var(--bs-warning-text-emphasis);
             }
         }
 

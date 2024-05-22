@@ -20,6 +20,19 @@ export default {
             return true;
         },
 
+        setAsContentIndexRule() {
+            return this.$store.getters['fm/settings/hasWriteAccess'] &&
+                this.selectedItems.length === 1 &&
+                this.selectedItems[0].type === 'file' &&
+                this.selectedItems[0].path !== this.$store.getters['fm/settings/contentIndex'];
+        },
+
+        viewContentIndexRule () {
+            return this.selectedItems.length === 1 &&
+                this.selectedItems[0].type === 'file' &&
+                this.selectedItems[0].path === this.$store.getters['fm/settings/contentIndex'];
+        },
+
         /**
          * Play audio - menu item status - show or hide
          * @returns {boolean}

@@ -6,6 +6,7 @@ const de = {
     btn: {
         about: 'Über',
         addToCart: 'in den Warekorb',
+        setAsContentIndex: 'Als Inhaltsverzeichnis festlegen',
         back: 'Zurück',
         cancel: 'Abbrechen',
         clear: 'Leeren',
@@ -35,6 +36,8 @@ const de = {
     },
     contextMenu: {
         addToCart: 'in den Warekorb',
+        setAsContentIndex: 'Als Inhaltsverzeichnis festlegen',
+        viewContentIndex: 'Inhaltsverzeichnis anzeigen',
         copy: 'Kopieren',
         cut: 'Ausschneiden',
         delete: 'Löschen',

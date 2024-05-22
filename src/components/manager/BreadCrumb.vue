@@ -57,10 +57,12 @@ export default {
          * @returns {*}
          */
         computedBreadcrumb() {
-            var breadCrumbString = structuredClone(this.$store.getters[`fm/${this.manager}/breadcrumb`]).join('/');
-            breadCrumbString = breadCrumbString.replace(this.$store.getters[`fm/settings/rootPath`], '');
+            var breadCrumbString = (structuredClone(this.$store.getters[`fm/${this.manager}/breadcrumb`]) || []).join('/');
+            if (this.$store.getters[`fm/settings/rootPath`] !== '/') {
+                breadCrumbString = breadCrumbString.replace(this.$store.getters[`fm/settings/rootPath`], '');
+            }
             return (breadCrumbString ?? '')
-                .replace('/','') // poor mans ltrim('/') works because replace only matches first occurance
+                .replace(/^\//,'') // poor mans ltrim('/') works because replace only matches first occurance
                 .split('/');
         },
         breadCrumb () {

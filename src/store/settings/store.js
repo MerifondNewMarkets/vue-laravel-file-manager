@@ -46,6 +46,12 @@ export default {
             // May the user only read or write
             hasWriteAccess: null,
 
+            // Path to the content index file
+            contentIndex: '',
+
+            // Are we in File Explorer or in Select mode
+            isSelectMode: null,
+
             // axios default URL
             baseUrl: null,
 
@@ -96,13 +102,21 @@ export default {
                         icon: 'bi-cart-plus',
                     },
                     {
-                        name: 'view',
+                        name: 'setAsContentIndex',
+                        icon: 'bi-bookmark-star',
+                    },
+                    {
+                        name: 'viewContentIndex',
                         icon: 'bi-eye',
                     },
                     {
-                        name: 'select',
-                        icon: 'bi-check2',
+                        name: 'view',
+                        icon: 'bi-eye',
                     },
+                    // {
+                    //     name: 'select',
+                    //     icon: 'bi-check2',
+                    // },
                 ],
                 [
                     {

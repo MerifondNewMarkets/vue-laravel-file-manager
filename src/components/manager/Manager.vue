@@ -2,7 +2,11 @@
     <div class="fm-content d-flex flex-column">
         <bread-crumb v-bind:manager="manager" />
         <div class="fm-content-body">
-            <table-view v-if="viewType === 'table'" v-bind:manager="manager" />
+            <component
+                v-if="viewType === 'table'"
+                :is="tableViewType"
+                v-bind:manager="manager"
+            />
             <grid-view v-else v-bind:manager="manager" />
         </div>
     </div>
@@ -13,12 +17,14 @@
 import BreadCrumb from './BreadCrumb.vue';
 import TableView from './TableView.vue';
 import GridView from './GridView.vue';
+import TableViewDirectorySelectMode from './TableViewDirectorySelectMode.vue';
 
 export default {
     name: 'Manager',
     components: {
         BreadCrumb,
         TableView,
+        TableViewDirectorySelectMode,
         GridView,
     },
     props: {
@@ -31,6 +37,9 @@ export default {
          */
         viewType() {
             return this.$store.state.fm[this.manager].viewType;
+        },
+        tableViewType() {
+            return this.$store.getters['fm/settings/isSelectMode'] ? 'TableViewDirectorySelectMode' : 'TableView';
         },
     },
 };

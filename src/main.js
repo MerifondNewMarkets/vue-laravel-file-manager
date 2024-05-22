@@ -7,6 +7,9 @@ import { createStore } from 'vuex';
 import fm from './store';
 // App
 import App from './FileManager.vue';
+import { tooltip } from './tooltip.js'
+
+
 
 // create new store
 const store = createStore({
@@ -15,4 +18,17 @@ const store = createStore({
 });
 const mountEl = document.querySelector("#fm");
 
-window.fm = createApp(App, { ...mountEl.dataset }).use(store).mount('#fm');
+if (mountEl) {
+    const app = createApp(App, { ...mountEl.dataset });
+    app.use(store).mount('#fm');
+    app.directive('tooltip', tooltip)
+    window.fm = app;
+}
+
+window.remountFileManager = function () {
+    const mountEl = document.querySelector("#fm");
+    const app = createApp(App, { ...mountEl.dataset });
+    app.use(store).mount('#fm');
+    app.directive('tooltip', tooltip)
+    window.fm = app;
+}

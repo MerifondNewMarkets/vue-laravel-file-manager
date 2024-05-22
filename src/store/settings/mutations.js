@@ -26,6 +26,14 @@ export default {
             state.hasWriteAccess = data.hasWriteAccess;
         }
 
+        if (Object.prototype.hasOwnProperty.call(data, 'contentIndex')) {
+            state.contentIndex = data.contentIndex;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(data, 'isSelectMode')) {
+            state.isSelectMode = data.isSelectMode;
+        }
+
         // base url - axios
         if (Object.prototype.hasOwnProperty.call(data, 'baseUrl')) {
             state.baseUrl = data.baseUrl;

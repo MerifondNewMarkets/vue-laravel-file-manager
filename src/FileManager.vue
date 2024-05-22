@@ -77,7 +77,19 @@ export default {
         rootPath: {
             type: String,
             default() {
-                return null;
+                return '/';
+            },
+        },
+        contentIndex: {
+            type: String,
+            default() {
+                return '';
+            },
+        },
+        windowsConfigParam: {
+            type: String,
+            default() {
+                return 2;
             },
         },
         recordType: {
@@ -96,6 +108,12 @@ export default {
             type: Boolean,
             default() {
                 return null;
+            },
+        },
+        isSelectMode: {
+            type: Boolean,
+            default() {
+                return false;
             },
         }
     },
@@ -126,6 +144,9 @@ export default {
             this.$store.commit('fm/settings/manualSettings', {
                 ...this.mergedSettings,
                 rootPath: event.detail.rootPath,
+                contentIndex: event.detail.contentIndex,
+                windowsConfig: parseInt(event.detail.windowsConfigParam) || 2,
+                isSelectMode: event.detail.isSelectMode,
                 recordType: event.detail.recordType,
                 recordId: event.detail.recordId,
             });
@@ -157,12 +178,17 @@ export default {
             fullScreen: (state) => state.settings.fullScreen,
         }),
         mergedSettings: function () {
+            console.log(this.windowsConfig);
+            console.log(this.windowsConfig ? parseInt(this.windowsConfig) : 2);
             return {
                 ...this.settings,
                 rootPath: this.rootPath,
                 recordType: this.recordType,
                 recordId: this.recordId,
+                contentIndex: this.contentIndex,
+                windowsConfig: parseInt(this.windowsConfigParam) ?? 2,
                 hasWriteAccess: this.hasWriteAccess,
+                isSelectMode: this.isSelectMode,
             };
         },
     },

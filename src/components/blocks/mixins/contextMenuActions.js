@@ -6,12 +6,23 @@ import HTTP from '../../../http/get';
  */
 export default {
     methods: {
-
+        /**
+         * Add to cart
+         */
         addToCartAction() {
             this.$store.dispatch(`fm/${this.$store.state.fm.activeManager}/addToCart`, {
                 files: this.selectedItems,
                 recordId: this.$store.getters[`fm/settings/recordId`],
                 recordType: this.$store.getters[`fm/settings/recordType`],
+            });
+        },
+
+        /**
+         * Mark item as Content Index
+         */
+        setAsContentIndexAction() {
+            this.$store.dispatch(`fm/${this.$store.state.fm.activeManager}/setAsContentIndex`, {
+                file: this.selectedItems[0],
             });
         },
 
@@ -57,6 +68,29 @@ export default {
                 modalName: 'PreviewModal',
                 show: true,
             });
+        },
+
+        viewContentIndexAction() {
+            const item = this.selectedItems[0];
+            // if item is not contentindex return
+            if (item.path !== this.$store.getters['fm/settings/contentIndex']) {
+                return;
+            }
+            const extension = item.extension.toLowerCase();
+            // show, play..
+            if (this.$store.state.fm.settings.imageExtensions.includes(extension)) {
+                // show image
+                this.$store.commit('fm/modal/setModalState', {
+                    modalName: 'PreviewModal',
+                    show: true,
+                });
+            } else if (extension === 'pdf') {
+                // show pdf document
+                this.$store.dispatch('fm/openPDF', {
+                    disk: this.selectedDisk,
+                    path: item.path,
+                });
+            }
         },
 
         /**
