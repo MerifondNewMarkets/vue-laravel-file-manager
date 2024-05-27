@@ -20,10 +20,19 @@ export default {
                 let leftDisk = response.data.config.leftDisk ? response.data.config.leftDisk : getters.diskList[0];
 
                 let rightDisk = response.data.config.rightDisk ? response.data.config.rightDisk : getters.diskList[0];
+                let rootPath = state.settings.rootPath;
+                const returnPath = sessionStorage.getItem('currentFileManagerPath');
+                // check if return path is set
+                // if it is set, use it as root path ONCE
+                if (returnPath !== null) {
+                    rootPath = returnPath
+                    // Remove the return path from session storage to prevent being stuck
+                    sessionStorage.removeItem('currentFileManagerPath');
+                }
 
                 // paths
-                let leftPath = state.settings.rootPath || response.data.config.leftPath;
-                let rightPath = state.settings.rootPath || response.data.config.rightPath;
+                let leftPath = rootPath || response.data.config.leftPath;
+                let rightPath = rootPath || response.data.config.rightPath;
 
                 commit('left/setDisk', leftDisk);
 

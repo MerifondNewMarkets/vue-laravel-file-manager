@@ -87,7 +87,7 @@ export default {
             },
         },
         windowsConfigParam: {
-            type: String,
+            type: Number,
             default() {
                 return 2;
             },

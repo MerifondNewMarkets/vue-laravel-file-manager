@@ -9,7 +9,7 @@ import fm from './store';
 import App from './FileManager.vue';
 import { tooltip } from './tooltip.js'
 
-
+import '/node_modules/bootstrap-icons/font/bootstrap-icons.scss';
 
 // create new store
 const store = createStore({
@@ -25,10 +25,10 @@ if (mountEl) {
     window.fm = app;
 }
 
-window.remountFileManager = function () {
-    const mountEl = document.querySelector("#fm");
+window.remountFileManager = function (target = '#fm') {
+    const mountEl = document.querySelector(target);
     const app = createApp(App, { ...mountEl.dataset });
-    app.use(store).mount('#fm');
+    app.use(store).mount(target);
     app.directive('tooltip', tooltip)
     window.fm = app;
 }
