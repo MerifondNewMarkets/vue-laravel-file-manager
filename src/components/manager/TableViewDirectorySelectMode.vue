@@ -91,7 +91,7 @@ export default {
             this.$store.dispatch(`fm/${this.$store.state.fm.activeManager}/emitSelect`, { path: item });
         },
         isSelectable (directory) {
-            if (directory.isUsedbyConstructionArchive) {
+            if (directory.isAlreadyInUse) {
                 return false;
             }
             return true;
