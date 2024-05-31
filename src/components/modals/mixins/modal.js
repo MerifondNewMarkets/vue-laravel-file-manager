@@ -26,6 +26,7 @@ export default {
             this.$store.commit('fm/modal/setModalState', {
                 modalName: null,
                 show: false,
+                callback: null,
             });
         },
     },

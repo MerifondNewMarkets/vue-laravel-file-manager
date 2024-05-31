@@ -57,7 +57,12 @@ export default {
          * @returns {boolean|*}
          */
         viewRule() {
-            return !this.multiSelect && this.firstItemType === 'file' && this.canView(this.selectedItems[0].extension);
+            const item = this.selectedItems[0];
+            if (item.path === this.$store.getters['fm/settings/contentIndex']) {
+                // content index file has its own viewer
+                return false;
+            }
+            return !this.multiSelect && this.firstItemType === 'file' && this.canView(item.extension);
         },
 
         /**

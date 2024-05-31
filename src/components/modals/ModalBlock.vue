@@ -24,6 +24,8 @@ import VideoPlayerModal from './views/VideoPlayerModal.vue';
 import ZipModal from './views/ZipModal.vue';
 import UnzipModal from './views/UnzipModal.vue';
 import AboutModal from './views/AboutModal.vue';
+import AcceptTermsModal from './views/AcceptTermsModal.vue';
+import ViewPdfModal from './views/ViewPdfModal.vue';
 
 export default {
     name: 'ModalBlock',
@@ -32,6 +34,8 @@ export default {
         NewFolderModal,
         UploadModal,
         DeleteModal,
+        AcceptTermsModal,
+        ViewPdfModal,
         ClipboardModal,
         StatusModal,
         RenameModal,
@@ -64,7 +68,7 @@ export default {
         modalSize() {
             return {
                 'modal-xl': this.modalName === 'PreviewModal' || this.modalName === 'TextEditModal',
-                'modal-lg': this.modalName === 'VideoPlayerModal',
+                'modal-lg': this.modalName === 'VideoPlayerModal' || this.modalName === 'ViewPdfModal' || this.modalName === 'AcceptTermsModal',
                 'modal-sm': false,
             };
         },
