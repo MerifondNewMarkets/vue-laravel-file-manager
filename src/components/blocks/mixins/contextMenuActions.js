@@ -63,12 +63,40 @@ export default {
          * View file
          */
         viewAction() {
+            const item = this.selectedItems[0];
+            const extension = item.extension.toLowerCase();
+
             // show image
-            this.$store.commit('fm/modal/setModalState', {
-                modalName: 'PreviewModal',
-                show: true,
-            });
+            const cb = () => {
+                if (this.$store.state.fm.settings.imageExtensions.includes(extension)) {
+                    // show image
+                    this.$store.commit('fm/modal/setModalState', {
+                        modalName: 'PreviewModal',
+                        show: true,
+                        callback: cb
+                    });
+                } else if (extension === 'pdf') {
+                    // show pdf document
+                    this.$store.dispatch('fm/openPDF', {
+                        disk: this.selectedDisk,
+                        path: item.path,
+                    });
+                }
+                livewire.emit('viewedFile', item.path);
+            }
+            if (!sessionStorage.getItem('hasAcceptedTerms') || sessionStorage.getItem('hasAcceptedTerms') !== 'true') {
+                this.$store.commit('fm/modal/setModalState', {
+                    modalName: 'AcceptTermsModal',
+                    show: true,
+                    callback: cb,
+                });
+                return;
+            }
+            cb();
+
         },
+
+
 
         viewContentIndexAction() {
             const item = this.selectedItems[0];

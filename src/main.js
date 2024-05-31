@@ -20,15 +20,15 @@ const mountEl = document.querySelector("#fm");
 
 if (mountEl) {
     const app = createApp(App, { ...mountEl.dataset });
-    app.use(store).mount('#fm');
     app.directive('tooltip', tooltip)
+    app.use(store).mount('#fm');
     window.fm = app;
 }
 
 window.remountFileManager = function (target = '#fm') {
     const mountEl = document.querySelector(target);
     const app = createApp(App, { ...mountEl.dataset });
-    app.use(store).mount(target);
     app.directive('tooltip', tooltip)
+    app.use(store).mount(target);
     window.fm = app;
 }

@@ -49,7 +49,7 @@ export default {
         canView(extension) {
             // extension not found
             if (!extension) return false;
-
+            if (extension === 'pdf') return true;
             return this.$store.state.fm.settings.imageExtensions.includes(extension.toLowerCase());
         },
 

@@ -560,14 +560,9 @@ export default {
      * @param path
      */
     openPDF(context, { disk, path }) {
-        const win = window.open();
-
-        GET.getFileArrayBuffer(disk, path).then((response) => {
-            const blob = new Blob([response.data], { type: 'application/pdf' });
-
-            win.document.write(
-                `<iframe src="${URL.createObjectURL(blob)}" allowfullscreen height="100%" width="100%"></iframe>`
-            );
+        context.commit('modal/setModalState', {
+            modalName: 'ViewPdfModal',
+            show: true,
         });
     },
 };
