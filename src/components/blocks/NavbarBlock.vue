@@ -77,6 +77,16 @@
                         <i class="bi bi-clipboard"></i>
                     </button>
                 </div>
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    v-bind:class="[viewType === 'table' ? 'active' : '']"
+                    v-on:click="changeRootPath"
+                    v-bind:title="lang.btn.table"
+                    v-tooltip="'Speicherort ändern'"
+                >
+                    <i class="bi bi-crosshair"></i>
+                </button>
             </div>
             <div v-if="isInSelectMode" class="col-auto text-right">
                 <div class="btn-group" role="group">
@@ -238,6 +248,14 @@ export default {
          */
         selectView(type) {
             if (this.viewType !== type) this.$store.commit(`fm/${this.activeManager}/setView`, type);
+        },
+
+        changeRootPath() {
+            this.$store.commit('fm/settings/manualSettings', {
+                rootPath: '/',
+                windowsConfig: 1,
+                isSelectMode: true,
+            });
         },
 
         /**
