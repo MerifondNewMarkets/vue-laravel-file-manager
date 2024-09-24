@@ -26,6 +26,8 @@ import UnzipModal from './views/UnzipModal.vue';
 import AboutModal from './views/AboutModal.vue';
 import AcceptTermsModal from './views/AcceptTermsModal.vue';
 import ViewPdfModal from './views/ViewPdfModal.vue';
+import RootPathChangeWarningModal from './views/RootPathChangeWarningModal.vue';
+import SetRootPathConfirmModal from './views/SetRootPathConfirmModal.vue';
 
 export default {
     name: 'ModalBlock',
@@ -35,7 +37,9 @@ export default {
         UploadModal,
         DeleteModal,
         AcceptTermsModal,
+        RootPathChangeWarningModal,
         ViewPdfModal,
+        SetRootPathConfirmModal,
         ClipboardModal,
         StatusModal,
         RenameModal,

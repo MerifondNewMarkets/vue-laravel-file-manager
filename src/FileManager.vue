@@ -185,8 +185,6 @@ export default {
             fullScreen: (state) => state.settings.fullScreen,
         }),
         mergedSettings: function () {
-            console.log(this.windowsConfig);
-            console.log(this.windowsConfig ? parseInt(this.windowsConfig) : 2);
             return {
                 ...this.settings,
                 rootPath: this.rootPath,

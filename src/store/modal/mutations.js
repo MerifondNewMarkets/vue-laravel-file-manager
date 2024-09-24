@@ -5,10 +5,11 @@ export default {
      * @param show
      * @param modalName
      */
-    setModalState(state, { show, modalName, callback }) {
+    setModalState(state, { show, modalName, callback, data }) {
         state.showModal = show;
         state.modalName = modalName;
         state.modalCallback = callback;
+        state.data = data;
     },
 
     /**
@@ -18,6 +19,7 @@ export default {
     clearModal(state) {
         state.showModal = false;
         state.modalName = null;
+        state.data = null;
     },
 
     /**

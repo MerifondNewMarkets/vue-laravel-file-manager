@@ -22,7 +22,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-light" v-on:click="deny">Abbrechen</button>
-            <button type="button" class="btn btn-success" v-on:click="accept">Akzetieren und Dokument ansehen</button>
+            <button type="button" class="btn btn-success" v-on:click="accept">Akzeptieren und Dokument ansehen</button>
         </div>
     </div>
 </template>

@@ -7,4 +7,8 @@ export default {
   modalCallback(state) {
       return state.modalCallback;
   },
+
+  modalData(state) {
+    return state.data;
+  },
 }

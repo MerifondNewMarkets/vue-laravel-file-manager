@@ -28,13 +28,13 @@
                             <i class="bi bi-folder"></i> {{ directory.basename }}
                         </td>
                         <td class="align-middle">
-                            <button
+                            <div
                                 class="btn btn-outline-success btn-sm"
                                 @click.stop="emitSelect(directory)"
                             >
                                 <i class="bi bi-check-square" v-show="sortSettings.direction === 'up'"></i>
                                 Auswählen
-                            </button>
+                            </div>
                         </td>
                     </tr>
                     <tr
@@ -88,7 +88,12 @@ export default {
             this.$store.dispatch(`fm/${this.manager}/sortBy`, { field, direction: null });
         },
         emitSelect(item) {
-            this.$store.dispatch(`fm/${this.$store.state.fm.activeManager}/emitSelect`, { path: item });
+            this.$store.commit('fm/modal/setModalState', {
+                modalName: 'SetRootPathConfirmModal',
+                data: { selectedItems: item },
+                show: true,
+                callback: () => this.$store.dispatch(`fm/${this.$store.state.fm.activeManager}/emitSelect`, { path: item }),
+            });
         },
         isSelectable (directory) {
             if (directory.isAlreadyInUse) {

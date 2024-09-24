@@ -11,6 +11,8 @@ export default {
             // modal name
             modalName: null,
 
+            data: null,
+
             modalCallback: null,
 
             // main modal block height

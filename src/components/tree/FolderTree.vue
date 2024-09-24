@@ -1,6 +1,6 @@
 <template>
     <div class="fm-tree">
-        <ul class="fm-tree-branch">
+        <ul v-if="hasRootPath" class="fm-tree-branch">
             <li>
                 <p
                     v-if="rootItem"
@@ -13,8 +13,11 @@
                 <branch v-bind:parent-id="parentId" />
             </li>
         </ul>
+        <template v-else>
+            <div class="fm-tree-disk sticky-top"><i class="bi bi-hdd"></i> {{ selectedDisk }}</div>
+            <branch v-bind:parent-id="0" />
+        </template>
         <!-- <div class="fm-tree-disk sticky-top"><i class="bi bi-hdd"></i> {{ rootItemName }}</div> -->
-
     </div>
 </template>
 
@@ -27,12 +30,16 @@ export default {
         branch: Branch,
     },
     computed: {
+        hasRootPath() {
+            return this.$store.getters['fm/settings/rootPath'] &&
+                this.$store.getters['fm/settings/rootPath'] !== '/';
+        },
         /**
          * Selected Disk
          * @returns {*}
          */
         rootItemName() {
-            if (this.$store.getters['fm/settings/rootPath']) {
+            if (this.$store.getters['fm/settings/rootPath'] && this.$store.getters['fm/settings/rootPath'] !== '/') {
                 return `${this.$store.getters['fm/settings/rootPath']}`.split('/').pop();
             }
             return this.$store.getters['fm/selectedDisk'];

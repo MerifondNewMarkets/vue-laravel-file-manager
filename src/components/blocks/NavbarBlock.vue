@@ -77,38 +77,25 @@
                         <i class="bi bi-clipboard"></i>
                     </button>
                 </div>
-                <button
-                    type="button"
-                    class="btn btn-secondary"
-                    v-bind:class="[viewType === 'table' ? 'active' : '']"
-                    v-on:click="changeRootPath"
-                    v-bind:title="lang.btn.table"
-                    v-tooltip="'Speicherort ändern'"
-                >
-                    <i class="bi bi-crosshair"></i>
-                </button>
             </div>
-            <div v-if="isInSelectMode" class="col-auto text-right">
+            <div class="col-auto text-right">
                 <div class="btn-group" role="group">
                     <button
+                        v-if="isInSelectMode"
                         type="button"
                         class="btn btn-secondary"
-                        v-bind:class="[viewType === 'table' ? 'active' : '']"
-                        v-on:click="selectView('table')"
-                        v-bind:title="lang.btn.table"
+                        v-on:click="endSelectMode"
                     >
-                        <i class="bi bi-view-list"></i>
+                        <i class="bi bi-x-lg"></i>
                     </button>
-                </div>
-                <div class="btn-group" role="group">
                     <button
+                        v-else
                         type="button"
                         class="btn btn-secondary"
-                        v-bind:title="lang.btn.fullScreen"
-                        v-bind:class="{ active: fullScreen }"
-                        v-on:click="screenToggle"
+                        v-on:click="changeRootPath"
+                        v-tooltip="'Speicherort ändern'"
                     >
-                        <i class="bi bi-arrows-fullscreen"></i>
+                        <i class="bi bi-crosshair"></i>
                     </button>
                 </div>
             </div>
@@ -123,6 +110,11 @@ import EventBus from '../../emitter';
 export default {
     name: 'NavbarBlock',
     mixins: [translate],
+    data() {
+        return {
+            oldRootPath: '',
+        }
+    },
     computed: {
         /**
          * Active manager name
@@ -144,7 +136,8 @@ export default {
         },
 
         isInSelectMode () {
-            return this.$store.state.fm[this.activeManager].isSelectMode;
+            return this.$store.getters['fm/settings/isSelectMode'];
+            //return this.$store.state.fm[this.activeManager].isSelectMode;
         },
 
         /**
@@ -251,11 +244,28 @@ export default {
         },
 
         changeRootPath() {
-            this.$store.commit('fm/settings/manualSettings', {
-                rootPath: '/',
-                windowsConfig: 1,
-                isSelectMode: true,
+            const cb = () => {
+                this.oldRootPath = `${this.$store.getters['fm/settings/rootPath']}`;
+                this.$store.commit('fm/settings/manualSettings', {
+                    rootPath: '/',
+                    isSelectMode: true,
+                });
+            }
+
+            this.$store.commit('fm/modal/setModalState', {
+                modalName: 'RootPathChangeWarningModal',
+                show: true,
+                callback: cb,
             });
+        },
+
+        endSelectMode() {
+            this.$store.commit('fm/settings/manualSettings', {
+                rootPath: this.oldRootPath,
+                isSelectMode: false,
+            });
+            this.$store.dispatch('fm/left/selectDirectory', { path: this.oldRootPath, history: true });
+            this.$store.dispatch('fm/right/selectDirectory', { path: this.oldRootPath, history: true });
         },
 
         /**

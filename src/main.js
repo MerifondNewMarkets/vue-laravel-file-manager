@@ -26,6 +26,9 @@ if (mountEl) {
 }
 
 window.remountFileManager = function (target = '#fm') {
+    if (window.fm && typeof window.fm.unmount === 'function') {
+        window.fm.unmount();
+    }
     const mountEl = document.querySelector(target);
     const app = createApp(App, { ...mountEl.dataset });
     app.directive('tooltip', tooltip)
