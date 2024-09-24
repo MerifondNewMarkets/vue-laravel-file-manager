@@ -53,7 +53,7 @@
                     >
                         <i class="bi bi-folder"></i> {{ directory.basename }}
                     </td>
-                    <td />
+                    <td></td>
                     <td>{{ lang.manager.table.folder }}</td>
                     <td>
                         {{ timestampToDate(directory.timestamp) }}
@@ -62,13 +62,18 @@
                 <tr
                     v-for="(file, index) in files"
                     v-bind:key="`f-${index}`"
-                    v-bind:class="{ 'table-info': checkSelect('files', file.path) }"
+                    v-bind:class="{ 'table-info': checkSelect('files', file.path), 'is-content-index': isContentIndex(file) }"
                     v-on:click="selectItem('files', file.path, $event)"
                     v-on:dblclick="selectAction(file.path, file.extension)"
                     v-on:contextmenu.prevent="contextMenu(file, $event)"
+                    v-tooltip:left="isContentIndex(file) ? 'Inhaltsverzeichnis': false"
                 >
                     <td class="fm-content-item unselectable" v-bind:class="acl && file.acl === 0 ? 'text-hidden' : ''">
-                        <i class="bi" v-bind:class="extensionToIcon(file.extension)" />
+                        <i
+                            v-if="isContentIndex(file)"
+                            class="bi bi-bookmark-star"
+                        ></i>
+                        <i v-else class="bi" v-bind:class="extensionToIcon(file.extension)"></i>
                         {{ file.filename ? file.filename : file.basename }}
                     </td>
                     <td>{{ bytesToHuman(file.size) }}</td>
@@ -112,54 +117,69 @@ export default {
         sortBy(field) {
             this.$store.dispatch(`fm/${this.manager}/sortBy`, { field, direction: null });
         },
+        emitSelect(item) {
+            this.$store.dispatch(`fm/${this.$store.state.fm.activeManager}/emitSelect`, { path: item });
+        },
+        isContentIndex(item) {
+            return this.$store.getters['fm/settings/contentIndex'] === item.path;
+        },
     },
 };
 </script>
 
 <style lang="scss">
-.fm-table {
-    thead th {
-        background: white;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        cursor: pointer;
-        border-top: none;
+#fm {
+    .fm-table {
+        thead th {
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            cursor: pointer;
+            border-top: none;
 
-        &:hover {
+            &:hover {
+                background-color: #f8f9fa;
+            }
+
+            & > i {
+                padding-left: 0.5rem;
+            }
+        }
+
+        tr.is-content-index {
+            td {
+                background-color: var(--bs-warning);
+                color: var(--bs-warning-text-emphasis);
+            }
+        }
+
+        td {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        tr:hover {
             background-color: #f8f9fa;
         }
 
-        & > i {
-            padding-left: 0.5rem;
+        .w-10 {
+            width: 10%;
         }
-    }
 
-    td {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+        .w-65 {
+            width: 65%;
+        }
 
-    tr:hover {
-        background-color: #f8f9fa;
-    }
+        .fm-content-item {
+            cursor: pointer;
+            max-width: 1px;
+        }
 
-    .w-10 {
-        width: 10%;
-    }
-
-    .w-65 {
-        width: 65%;
-    }
-
-    .fm-content-item {
-        cursor: pointer;
-        max-width: 1px;
-    }
-
-    .text-hidden {
-        color: #cdcdcd;
+        .text-hidden {
+            color: #cdcdcd;
+        }
     }
 }
 </style>

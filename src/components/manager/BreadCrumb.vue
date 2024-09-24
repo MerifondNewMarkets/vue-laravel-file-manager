@@ -9,9 +9,9 @@
                 </li>
                 <li
                     class="breadcrumb-item text-truncate"
-                    v-for="(item, index) in breadcrumb"
+                    v-for="(item, index) in computedBreadcrumb"
                     v-bind:key="index"
-                    v-bind:class="[breadcrumb.length === index + 1 ? 'active' : '']"
+                    v-bind:class="[computedBreadcrumb.length === index + 1 ? 'active' : '']"
                     v-on:click="selectDirectory(index)"
                 >
                     <span>{{ item }}</span>
@@ -56,9 +56,18 @@ export default {
          * Breadcrumb
          * @returns {*}
          */
-        breadcrumb() {
-            return this.$store.getters[`fm/${this.manager}/breadcrumb`];
+        computedBreadcrumb() {
+            var breadCrumbString = (structuredClone(this.$store.getters[`fm/${this.manager}/breadcrumb`]) || []).join('/');
+            if (this.$store.getters[`fm/settings/rootPath`] !== '/') {
+                breadCrumbString = breadCrumbString.replace(this.$store.getters[`fm/settings/rootPath`], '');
+            }
+            return (breadCrumbString ?? '')
+                .replace(/^\//,'') // poor mans ltrim('/') works because replace only matches first occurance
+                .split('/');
         },
+        breadCrumb () {
+            return this.$store.getters[`fm/${this.manager}/breadcrumb`];
+        }
     },
     methods: {
         /**
@@ -66,7 +75,11 @@ export default {
          * @param index
          */
         selectDirectory(index) {
-            const path = this.breadcrumb.slice(0, index + 1).join('/');
+            var breadCrumbLength = this.$store.getters[`fm/${this.manager}/breadcrumb`].length;
+            var displayedBreadCrumbLength = this.computedBreadcrumb.length;
+            var offset = breadCrumbLength - displayedBreadCrumbLength;
+            index = offset + index;
+            const path = this.breadCrumb.slice(0, index + 1).join('/');
 
             // only if this path not selected
             if (path !== this.selectedDirectory) {
@@ -80,7 +93,7 @@ export default {
          */
         selectMainDirectory() {
             if (this.selectedDirectory) {
-                this.$store.dispatch(`fm/${this.manager}/selectDirectory`, { path: null, history: true });
+                this.$store.dispatch(`fm/${this.manager}/selectDirectory`, { path: this.$store.state.fm.settings.rootPath, history: true });
             }
         },
     },
@@ -88,20 +101,22 @@ export default {
 </script>
 
 <style lang="scss">
-.fm-breadcrumb {
-    .breadcrumb {
-        flex-wrap: nowrap;
-        padding: 0.2rem 0.3rem;
-        margin-bottom: 0.5rem;
+#fm {
+    .fm-breadcrumb {
+        .breadcrumb {
+            flex-wrap: nowrap;
+            padding: 0.2rem 0.3rem;
+            margin-bottom: 0.5rem;
 
-        &.active-manager {
-            background-color: #cff4fc;
-        }
+            &.active-manager {
+                background-color: #cff4fc;
+            }
 
-        .breadcrumb-item:not(.active):hover {
-            cursor: pointer;
-            font-weight: normal;
-            color: #6c757d;
+            .breadcrumb-item:not(.active):hover {
+                cursor: pointer;
+                font-weight: normal;
+                color: #6c757d;
+            }
         }
     }
 }

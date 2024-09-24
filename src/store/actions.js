@@ -13,37 +13,26 @@ export default {
     initializeApp({ state, commit, getters, dispatch }) {
         GET.initialize().then((response) => {
             if (response.data.result.status === 'success') {
+
                 commit('settings/initSettings', response.data.config);
                 commit('setDisks', response.data.config.disks);
 
                 let leftDisk = response.data.config.leftDisk ? response.data.config.leftDisk : getters.diskList[0];
 
                 let rightDisk = response.data.config.rightDisk ? response.data.config.rightDisk : getters.diskList[0];
+                let rootPath = state.settings.rootPath;
+                const returnPath = sessionStorage.getItem('currentFileManagerPath');
+                // check if return path is set
+                // if it is set, use it as root path ONCE
+                if (returnPath !== null) {
+                    rootPath = returnPath
+                    // Remove the return path from session storage to prevent being stuck
+                    sessionStorage.removeItem('currentFileManagerPath');
+                }
 
                 // paths
-                let leftPath = response.data.config.leftPath;
-                let rightPath = response.data.config.rightPath;
-
-                // find disk and path settings in the URL
-                if (window.location.search) {
-                    const params = new URLSearchParams(window.location.search);
-
-                    if (params.get('leftDisk')) {
-                        leftDisk = params.get('leftDisk');
-                    }
-
-                    if (params.get('rightDisk')) {
-                        rightDisk = params.get('rightDisk');
-                    }
-
-                    if (params.get('leftPath')) {
-                        leftPath = params.get('leftPath');
-                    }
-
-                    if (params.get('rightPath')) {
-                        rightPath = params.get('rightPath');
-                    }
-                }
+                let leftPath = rootPath || response.data.config.leftPath;
+                let rightPath = rootPath || response.data.config.rightPath;
 
                 commit('left/setDisk', leftDisk);
 
@@ -77,7 +66,7 @@ export default {
                 } else if (state.settings.windowsConfig === 2) {
                     // if selected left manager and directories tree
                     // init directories tree
-                    dispatch('tree/initTree', leftDisk).then(() => {
+                    dispatch('tree/initTree', leftDisk, state.settings.rootPath).then(() => {
                         if (leftPath) {
                             // reopen folders if path not null
                             dispatch('tree/reopenPath', leftPath);
@@ -123,7 +112,7 @@ export default {
 
                 // reinitialize tree if directories tree is shown
                 if (state.settings.windowsConfig === 2) {
-                    dispatch('tree/initTree', disk);
+                    dispatch('tree/initTree', disk, state.settings.rootPath);
                 }
 
                 // download content for root path
@@ -457,7 +446,7 @@ export default {
     refreshAll({ state, getters, dispatch }) {
         if (state.settings.windowsConfig === 2) {
             // refresh tree
-            return dispatch('tree/initTree', state.left.selectedDisk).then(() =>
+            return dispatch('tree/initTree', state.left.selectedDisk, state.settings.rootPath).then(() =>
                 Promise.all([
                     // reopen folders if need
                     dispatch('tree/reopenPath', getters.selectedDirectory),
@@ -571,14 +560,9 @@ export default {
      * @param path
      */
     openPDF(context, { disk, path }) {
-        const win = window.open();
-
-        GET.getFileArrayBuffer(disk, path).then((response) => {
-            const blob = new Blob([response.data], { type: 'application/pdf' });
-
-            win.document.write(
-                `<iframe src="${URL.createObjectURL(blob)}" allowfullscreen height="100%" width="100%"></iframe>`
-            );
+        context.commit('modal/setModalState', {
+            modalName: 'ViewPdfModal',
+            show: true,
         });
     },
 };

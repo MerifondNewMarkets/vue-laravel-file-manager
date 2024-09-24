@@ -128,9 +128,11 @@ export default {
 </script>
 
 <style lang="scss">
-.fm-modal-clipboard {
-    .modal-body .far {
-        padding-right: 0.5rem;
+#fm {
+    .fm-modal-clipboard {
+        .modal-body .far {
+            padding-right: 0.5rem;
+        }
     }
 }
 </style>

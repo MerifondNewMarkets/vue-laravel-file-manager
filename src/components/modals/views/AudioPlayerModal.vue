@@ -150,27 +150,28 @@ export default {
 
 <style lang="scss">
 @import 'plyr/src/sass/plyr.scss';
+#fm {
+    .fm-modal-audio-player {
+        .bi.bi-play-fill {
+            color: gray;
+            opacity: 0.1;
+            cursor: pointer;
 
-.fm-modal-audio-player {
-    .bi.bi-play-fill {
-        color: gray;
-        opacity: 0.1;
-        cursor: pointer;
+            &:hover {
+                opacity: 0.5;
+            }
 
-        &:hover {
+            &.active {
+                opacity: 1;
+                color: deepskyblue;
+            }
+        }
+
+        .bi.bi-pause-fill {
+            color: gray;
             opacity: 0.5;
+            cursor: pointer;
         }
-
-        &.active {
-            opacity: 1;
-            color: deepskyblue;
-        }
-    }
-
-    .bi.bi-pause-fill {
-        color: gray;
-        opacity: 0.5;
-        cursor: pointer;
     }
 }
 </style>

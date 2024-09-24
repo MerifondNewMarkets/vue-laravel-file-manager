@@ -6,39 +6,17 @@
                     <button
                         type="button"
                         class="btn btn-secondary"
-                        v-bind:disabled="backDisabled"
-                        v-bind:title="lang.btn.back"
-                        v-on:click="historyBack()"
-                    >
-                        <i class="bi bi-skip-backward-fill" />
-                    </button>
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        v-bind:disabled="forwardDisabled"
-                        v-bind:title="lang.btn.forward"
-                        v-on:click="historyForward()"
-                    >
-                        <i class="bi bi-skip-forward-fill" />
-                    </button>
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
                         v-on:click="refreshAll()"
                         v-bind:title="lang.btn.refresh"
                     >
                         <i class="bi bi-arrow-repeat"></i>
                     </button>
                 </div>
-                <div class="btn-group" role="group">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        v-on:click="showModal('NewFileModal')"
-                        v-bind:title="lang.btn.file"
-                    >
-                        <i class="bi bi-file-earmark"></i>
-                    </button>
+                <div
+                    v-if="$store.getters['fm/settings/hasWriteAccess']"
+                    class="btn-group"
+                    role="group"
+                >
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -75,16 +53,11 @@
                         <i class="bi bi-trash"></i>
                     </button>
                 </div>
-                <div class="btn-group" role="group">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        v-bind:disabled="!isAnyItemSelected"
-                        v-bind:title="lang.btn.copy"
-                        v-on:click="toClipboard('copy')"
-                    >
-                        <i class="bi bi-files"></i>
-                    </button>
+                <div
+                    v-if="$store.getters['fm/settings/hasWriteAccess']"
+                    class="btn-group"
+                    role="group"
+                >
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -104,18 +77,8 @@
                         <i class="bi bi-clipboard"></i>
                     </button>
                 </div>
-                <div class="btn-group" role="group">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        v-bind:title="lang.btn.hidden"
-                        v-on:click="toggleHidden"
-                    >
-                        <i class="bi" v-bind:class="[hiddenFiles ? 'bi-eye-fill' : 'bi-eye-slash-fill']" />
-                    </button>
-                </div>
             </div>
-            <div class="col-auto text-right">
+            <div v-if="isInSelectMode" class="col-auto text-right">
                 <div class="btn-group" role="group">
                     <button
                         type="button"
@@ -125,15 +88,6 @@
                         v-bind:title="lang.btn.table"
                     >
                         <i class="bi bi-view-list"></i>
-                    </button>
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        v-bind:class="[viewType === 'grid' ? 'active' : '']"
-                        v-on:click="selectView('grid')"
-                        v-bind:title="lang.btn.grid"
-                    >
-                        <i class="bi bi-grid"></i>
                     </button>
                 </div>
                 <div class="btn-group" role="group">
@@ -145,16 +99,6 @@
                         v-on:click="screenToggle"
                     >
                         <i class="bi bi-arrows-fullscreen"></i>
-                    </button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        v-bind:title="lang.btn.about"
-                        v-on:click="showModal('AboutModal')"
-                    >
-                        <i class="bi bi-question-lg"></i>
                     </button>
                 </div>
             </div>
@@ -179,25 +123,6 @@ export default {
         },
 
         /**
-         * Back button state
-         * @returns {boolean}
-         */
-        backDisabled() {
-            return !this.$store.state.fm[this.activeManager].historyPointer;
-        },
-
-        /**
-         * Forward button state
-         * @returns {boolean}
-         */
-        forwardDisabled() {
-            return (
-                this.$store.state.fm[this.activeManager].historyPointer ===
-                this.$store.state.fm[this.activeManager].history.length - 1
-            );
-        },
-
-        /**
          * Is any files or directories selected?
          * @returns {boolean}
          */
@@ -206,6 +131,10 @@ export default {
                 this.$store.state.fm[this.activeManager].selected.files.length > 0 ||
                 this.$store.state.fm[this.activeManager].selected.directories.length > 0
             );
+        },
+
+        isInSelectMode () {
+            return this.$store.state.fm[this.activeManager].isSelectMode;
         },
 
         /**
@@ -254,20 +183,6 @@ export default {
          */
         refreshAll() {
             this.$store.dispatch('fm/refreshAll');
-        },
-
-        /**
-         * History back
-         */
-        historyBack() {
-            this.$store.dispatch(`fm/${this.activeManager}/historyBack`);
-        },
-
-        /**
-         * History forward
-         */
-        historyForward() {
-            this.$store.dispatch(`fm/${this.activeManager}/historyForward`);
         },
 
         /**
@@ -358,11 +273,13 @@ export default {
 </script>
 
 <style lang="scss">
-.fm-navbar {
-    flex: 0 0 auto;
+#fm {
+    .fm-navbar {
+        flex: 0 0 auto;
 
-    .col-auto > .btn-group:not(:last-child) {
-        margin-right: 0.4rem;
+        .col-auto > .btn-group:not(:last-child) {
+            margin-right: 0.4rem;
+        }
     }
 }
 </style>

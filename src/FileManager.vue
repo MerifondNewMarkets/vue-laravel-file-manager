@@ -74,6 +74,54 @@ export default {
                 return {};
             },
         },
+        rootPath: {
+            type: String,
+            default() {
+                return '/';
+            },
+        },
+        baseUrl: {
+            type: String,
+            default() {
+                return '/';
+            },
+        },
+        contentIndex: {
+            type: String,
+            default() {
+                return '';
+            },
+        },
+        windowsConfigParam: {
+            type: Number,
+            default() {
+                return 2;
+            },
+        },
+        recordType: {
+            type: String,
+            default() {
+                return null;
+            },
+        },
+        recordId: {
+            type: String,
+            default() {
+                return null;
+            },
+        },
+        hasWriteAccess: {
+            type: Boolean,
+            default() {
+                return null;
+            },
+        },
+        isSelectMode: {
+            type: Boolean,
+            default() {
+                return false;
+            },
+        }
     },
     data() {
         return {
@@ -85,7 +133,7 @@ export default {
     },
     created() {
         // manual settings
-        this.$store.commit('fm/settings/manualSettings', this.settings);
+        this.$store.commit('fm/settings/manualSettings', this.mergedSettings);
 
         // initiate Axios
         this.$store.commit('fm/settings/initAxiosSettings');
@@ -95,7 +143,29 @@ export default {
 
         // initialize app settings
         this.$store.dispatch('fm/initializeApp');
+
+        // listen for record-updated event, dispatched by livewire
+        // on change. This is to update the root path.
+        window.addEventListener('record-updated', event => {
+            this.$store.commit('fm/settings/manualSettings', {
+                ...this.mergedSettings,
+                rootPath: event.detail.rootPath,
+                baseUrl: event.detail.baseUrl,
+                contentIndex: event.detail.contentIndex,
+                windowsConfig: parseInt(event.detail.windowsConfigParam) || 2,
+                isSelectMode: event.detail.isSelectMode,
+                recordType: event.detail.recordType,
+                recordId: event.detail.recordId,
+            });
+
+            // reinitialize app with new settings. Otherwise, saved
+            // navigation state such as current directory is persisted,
+            // which in turn hinders the new root path from being the
+            // active directory.
+            this.$store.dispatch('fm/initializeApp');
+        })
     },
+
     destroyed() {
         // reset state
         this.$store.dispatch('fm/resetState');
@@ -114,6 +184,21 @@ export default {
             showModal: (state) => state.modal.showModal,
             fullScreen: (state) => state.settings.fullScreen,
         }),
+        mergedSettings: function () {
+            console.log(this.windowsConfig);
+            console.log(this.windowsConfig ? parseInt(this.windowsConfig) : 2);
+            return {
+                ...this.settings,
+                rootPath: this.rootPath,
+                recordType: this.recordType,
+                recordId: this.recordId,
+                baseUrl: this.baseUrl,
+                contentIndex: this.contentIndex,
+                windowsConfig: parseInt(this.windowsConfigParam) ?? 2,
+                hasWriteAccess: this.hasWriteAccess,
+                isSelectMode: this.isSelectMode,
+            };
+        },
     },
     methods: {
         /**
@@ -241,72 +326,74 @@ export default {
 </script>
 
 <style lang="scss">
-.fm {
-    position: relative;
-    height: 100%;
-    padding: 1rem;
-    background-color: white;
-
-    &:-moz-full-screen {
-        background-color: white;
-    }
-
-    &:-webkit-full-screen {
-        background-color: white;
-    }
-
-    &:fullscreen {
-        background-color: white;
-    }
-
-    .fm-body {
-        flex: 1 1 auto;
-        overflow: hidden;
+#fm {
+    .fm {
         position: relative;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        border-top: 1px solid #6c757d;
-        border-bottom: 1px solid #6c757d;
+        height: 100%;
+        padding: 1rem;
+        background-color: white;
+
+        &:-moz-full-screen {
+            background-color: white;
+        }
+
+        &:-webkit-full-screen {
+            background-color: white;
+        }
+
+        &:fullscreen {
+            background-color: white;
+        }
+
+        .fm-body {
+            flex: 1 1 auto;
+            overflow: hidden;
+            position: relative;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            border-top: 1px solid #6c757d;
+            border-bottom: 1px solid #6c757d;
+        }
+
+        .unselectable {
+            user-select: none;
+        }
     }
 
-    .unselectable {
-        user-select: none;
+    .fm-error {
+        color: white;
+        background-color: #dc3545;
+        border-color: #dc3545;
     }
-}
 
-.fm-error {
-    color: white;
-    background-color: #dc3545;
-    border-color: #dc3545;
-}
+    .fm-danger {
+        color: #dc3545;
+        background-color: white;
+        border-color: #dc3545;
+    }
 
-.fm-danger {
-    color: #dc3545;
-    background-color: white;
-    border-color: #dc3545;
-}
+    .fm-warning {
+        color: #ffc107;
+        background-color: white;
+        border-color: #ffc107;
+    }
 
-.fm-warning {
-    color: #ffc107;
-    background-color: white;
-    border-color: #ffc107;
-}
+    .fm-success {
+        color: #198754;
+        background-color: white;
+        border-color: #198754;
+    }
 
-.fm-success {
-    color: #198754;
-    background-color: white;
-    border-color: #198754;
-}
+    .fm-info {
+        color: #0dcaf0;
+        background-color: white;
+        border-color: #0dcaf0;
+    }
 
-.fm-info {
-    color: #0dcaf0;
-    background-color: white;
-    border-color: #0dcaf0;
-}
-
-.fm.fm-full-screen {
-    width: 100%;
-    height: 100%;
-    padding-bottom: 0;
+    .fm.fm-full-screen {
+        width: 100%;
+        height: 100%;
+        padding-bottom: 0;
+    }
 }
 </style>

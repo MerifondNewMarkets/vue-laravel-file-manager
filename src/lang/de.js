@@ -5,6 +5,8 @@
 const de = {
     btn: {
         about: 'Über',
+        addToCart: 'in die Dokumentenmappe',
+        setAsContentIndex: 'Als Inhaltsverzeichnis festlegen',
         back: 'Zurück',
         cancel: 'Abbrechen',
         clear: 'Leeren',
@@ -33,6 +35,9 @@ const de = {
         title: 'Zwischenablage',
     },
     contextMenu: {
+        addToCart: 'in die Dokumentenmappe',
+        setAsContentIndex: 'Als Inhaltsverzeichnis festlegen',
+        viewContentIndex: 'Inhaltsverzeichnis anzeigen',
         copy: 'Kopieren',
         cut: 'Ausschneiden',
         delete: 'Löschen',

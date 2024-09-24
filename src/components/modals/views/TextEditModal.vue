@@ -152,10 +152,11 @@ export default {
 
 <style lang="scss">
 @import 'codemirror/theme/blackboard.css';
-
-.fm-modal-text-edit {
-    .modal-body {
-        padding: 0;
+#fm {
+    .fm-modal-text-edit {
+        .modal-body {
+            padding: 0;
+        }
     }
 }
 </style>

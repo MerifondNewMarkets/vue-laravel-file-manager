@@ -9,6 +9,31 @@ export default {
         if (Object.prototype.hasOwnProperty.call(data, 'headers')) {
             state.headers = data.headers;
         }
+
+        if (Object.prototype.hasOwnProperty.call(data, 'rootPath')) {
+            state.rootPath = data.rootPath;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(data, 'recordType')) {
+            state.recordType = data.recordType;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(data, 'recordId')) {
+            state.recordId = data.recordId;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(data, 'hasWriteAccess')) {
+            state.hasWriteAccess = data.hasWriteAccess;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(data, 'contentIndex')) {
+            state.contentIndex = data.contentIndex;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(data, 'isSelectMode')) {
+            state.isSelectMode = data.isSelectMode;
+        }
+
         // base url - axios
         if (Object.prototype.hasOwnProperty.call(data, 'baseUrl')) {
             state.baseUrl = data.baseUrl;
@@ -20,6 +45,10 @@ export default {
         // language
         if (Object.prototype.hasOwnProperty.call(data, 'lang')) {
             state.lang = data.lang;
+        }
+        // language
+        if (Object.prototype.hasOwnProperty.call(data, 'rootPath')) {
+            state.rootPath = data.rootPath;
         }
         // add new translation
         if (Object.prototype.hasOwnProperty.call(data, 'translation')) {
@@ -88,6 +117,7 @@ export default {
         if (!state.windowsConfig) state.windowsConfig = data.windowsConfig;
         state.acl = data.acl;
         state.hiddenFiles = data.hiddenFiles;
+        // state.rootPath = data.rootPath;
     },
 
     /**

@@ -1,4 +1,12 @@
-# Laravel file manager (Frontend)
+# File-Manger frontend
+Wir mussten das orignal-Frontend anpassen damit wir es für unser Projekt nutzen können.
+Deshalb haben wir es Geforked.
+
+Da es ein Fork ist, können wir es nicht auf privat stellen.
+Deshalb gibt es die Docs [hier](https://github.com/MerifondNewMarkets/bl2).
+
+
+# Orignal Readme ab hier: Laravel file manager (Frontend)
 
 > Backend - Laravel package - [alexusmai/laravel-file-manager](https://github.com/alexusmai/laravel-file-manager)
 
@@ -29,7 +37,7 @@ import { createStore } from 'vuex';
 import Main from './components/Main.vue';
 import FileManager from 'laravel-file-manager'
 // your Vuex store
-import store from './path-to-your-store/store'  
+import store from './path-to-your-store/store'
 
 createApp(Main).use(store).use(FileManager, {store}).mount('#id');
 ```

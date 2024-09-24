@@ -185,33 +185,35 @@ export default {
 </script>
 
 <style lang="scss">
-.fm-modal-upload {
-    .fm-btn-wrapper {
-        position: relative;
-        overflow: hidden;
-        padding-bottom: 6px;
-        margin-bottom: 0.6rem;
-    }
+#fm {
+    .fm-modal-upload {
+        .fm-btn-wrapper {
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 6px;
+            margin-bottom: 0.6rem;
+        }
 
-    .fm-btn-wrapper input[type='file'] {
-        font-size: 100px;
-        position: absolute;
-        left: 0;
-        top: 0;
-        opacity: 0;
-        cursor: pointer;
-    }
+        .fm-btn-wrapper input[type='file'] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
 
-    .fm-upload-list .bi {
-        padding-right: 0.5rem;
-    }
+        .fm-upload-list .bi {
+            padding-right: 0.5rem;
+        }
 
-    .fm-upload-list .form-check-inline {
-        margin-right: 0;
-    }
+        .fm-upload-list .form-check-inline {
+            margin-right: 0;
+        }
 
-    .fm-upload-info > .progress {
-        margin-bottom: 1rem;
+        .fm-upload-info > .progress {
+            margin-bottom: 1rem;
+        }
     }
 }
 </style>

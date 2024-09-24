@@ -7,6 +7,26 @@ import HTTP from '../../../http/get';
 export default {
     methods: {
         /**
+         * Add to cart
+         */
+        addToCartAction() {
+            this.$store.dispatch(`fm/${this.$store.state.fm.activeManager}/addToCart`, {
+                files: this.selectedItems,
+                recordId: this.$store.getters[`fm/settings/recordId`],
+                recordType: this.$store.getters[`fm/settings/recordType`],
+            });
+        },
+
+        /**
+         * Mark item as Content Index
+         */
+        setAsContentIndexAction() {
+            this.$store.dispatch(`fm/${this.$store.state.fm.activeManager}/setAsContentIndex`, {
+                file: this.selectedItems[0],
+            });
+        },
+
+        /**
          * Open folder
          */
         openAction() {
@@ -43,11 +63,62 @@ export default {
          * View file
          */
         viewAction() {
+            const item = this.selectedItems[0];
+            const extension = item.extension.toLowerCase();
+
             // show image
-            this.$store.commit('fm/modal/setModalState', {
-                modalName: 'PreviewModal',
-                show: true,
-            });
+            const cb = () => {
+                if (this.$store.state.fm.settings.imageExtensions.includes(extension)) {
+                    // show image
+                    this.$store.commit('fm/modal/setModalState', {
+                        modalName: 'PreviewModal',
+                        show: true,
+                        callback: cb
+                    });
+                } else if (extension === 'pdf') {
+                    // show pdf document
+                    this.$store.dispatch('fm/openPDF', {
+                        disk: this.selectedDisk,
+                        path: item.path,
+                    });
+                }
+                livewire.emit('viewedFile', item.path);
+            }
+            if (!sessionStorage.getItem('hasAcceptedTerms') || sessionStorage.getItem('hasAcceptedTerms') !== 'true') {
+                this.$store.commit('fm/modal/setModalState', {
+                    modalName: 'AcceptTermsModal',
+                    show: true,
+                    callback: cb,
+                });
+                return;
+            }
+            cb();
+
+        },
+
+
+
+        viewContentIndexAction() {
+            const item = this.selectedItems[0];
+            // if item is not contentindex return
+            if (item.path !== this.$store.getters['fm/settings/contentIndex']) {
+                return;
+            }
+            const extension = item.extension.toLowerCase();
+            // show, play..
+            if (this.$store.state.fm.settings.imageExtensions.includes(extension)) {
+                // show image
+                this.$store.commit('fm/modal/setModalState', {
+                    modalName: 'PreviewModal',
+                    show: true,
+                });
+            } else if (extension === 'pdf') {
+                // show pdf document
+                this.$store.dispatch('fm/openPDF', {
+                    disk: this.selectedDisk,
+                    path: item.path,
+                });
+            }
         },
 
         /**

@@ -2,6 +2,26 @@
 import GET from '../../http/get';
 
 export default {
+
+    addToCart({ state, commit, dispatch, rootState }, { files, recordType, recordId }) {
+        return livewire.emit('addToCart', files, recordType, recordId)
+    },
+
+    setAsContentIndex({ state, commit, dispatch, rootState }, { file }) {
+        const pathParts = file.path.split('/');
+        pathParts.pop();
+        const pathToFile = pathParts.join('/');
+
+        // set Current Path in Session Storage to Prevent being redirected to the main directory after refresh
+        sessionStorage.setItem('currentFileManagerPath', pathToFile);
+
+        return livewire.emit('setContentIndex', file);
+    },
+
+    emitSelect({ state, commit, dispatch, rootState }, { path }) {
+        return livewire.emit('selectedFile', path)
+    },
+
     /**
      * Load files and folders for the selected directory
      * @param state

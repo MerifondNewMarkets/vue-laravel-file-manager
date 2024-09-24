@@ -56,13 +56,15 @@ export default {
 </script>
 
 <style lang="scss">
-.fm-disk-list {
-    ul.list-inline {
-        margin-bottom: 0.5rem;
-    }
+#fm {
+    .fm-disk-list {
+        ul.list-inline {
+            margin-bottom: 0.5rem;
+        }
 
-    .badge.bg-light {
-        cursor: pointer;
+        .badge.bg-light {
+            cursor: pointer;
+        }
     }
 }
 </style>

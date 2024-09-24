@@ -13,6 +13,27 @@ export default {
         },
 
         /**
+         * Open - menu item status - show or hide
+         * @returns {boolean}
+         */
+        addToCartRule() {
+            return true;
+        },
+
+        setAsContentIndexRule() {
+            return this.$store.getters['fm/settings/hasWriteAccess'] &&
+                this.selectedItems.length === 1 &&
+                this.selectedItems[0].type === 'file' &&
+                this.selectedItems[0].path !== this.$store.getters['fm/settings/contentIndex'];
+        },
+
+        viewContentIndexRule () {
+            return this.selectedItems.length === 1 &&
+                this.selectedItems[0].type === 'file' &&
+                this.selectedItems[0].path === this.$store.getters['fm/settings/contentIndex'];
+        },
+
+        /**
          * Play audio - menu item status - show or hide
          * @returns {boolean}
          */
@@ -36,7 +57,12 @@ export default {
          * @returns {boolean|*}
          */
         viewRule() {
-            return !this.multiSelect && this.firstItemType === 'file' && this.canView(this.selectedItems[0].extension);
+            const item = this.selectedItems[0];
+            if (item.path === this.$store.getters['fm/settings/contentIndex']) {
+                // content index file has its own viewer
+                return false;
+            }
+            return !this.multiSelect && this.firstItemType === 'file' && this.canView(item.extension);
         },
 
         /**
@@ -44,6 +70,7 @@ export default {
          * @returns {boolean|*}
          */
         editRule() {
+            if (!this.$store.getters['fm/settings/hasWriteAccess']) return false;
             return !this.multiSelect && this.firstItemType === 'file' && this.canEdit(this.selectedItems[0].extension);
         },
 
@@ -68,6 +95,7 @@ export default {
          * @returns {boolean}
          */
         copyRule() {
+            if (!this.$store.getters['fm/settings/hasWriteAccess']) return false;
             return true;
         },
 
@@ -76,6 +104,7 @@ export default {
          * @returns {boolean}
          */
         cutRule() {
+            if (!this.$store.getters['fm/settings/hasWriteAccess']) return false;
             return true;
         },
 
@@ -84,6 +113,7 @@ export default {
          * @returns {boolean}
          */
         renameRule() {
+            if (!this.$store.getters['fm/settings/hasWriteAccess']) return false;
             return !this.multiSelect;
         },
 
@@ -92,6 +122,7 @@ export default {
          * @returns {boolean}
          */
         pasteRule() {
+            if (!this.$store.getters['fm/settings/hasWriteAccess']) return false;
             return !!this.$store.state.fm.clipboard.type;
         },
 
@@ -100,6 +131,7 @@ export default {
          * @returns {boolean}
          */
         zipRule() {
+            if (!this.$store.getters['fm/settings/hasWriteAccess']) return false;
             return this.selectedDiskDriver === 'local';
         },
 
@@ -108,6 +140,7 @@ export default {
          * @returns {boolean}
          */
         unzipRule() {
+            if (!this.$store.getters['fm/settings/hasWriteAccess']) return false;
             return (
                 this.selectedDiskDriver === 'local' &&
                 !this.multiSelect &&
@@ -121,6 +154,7 @@ export default {
          * @returns {boolean}
          */
         deleteRule() {
+            if (!this.$store.getters['fm/settings/hasWriteAccess']) return false;
             return true;
         },
 

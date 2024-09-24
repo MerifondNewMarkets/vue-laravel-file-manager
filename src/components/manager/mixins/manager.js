@@ -55,6 +55,10 @@ export default {
          * @return {boolean}
          */
         isRootPath() {
+            // if root path is set => check if selected directory is root path
+            if (this.$store.state.fm.settings.rootPath) {
+                return this.$store.state.fm[this.manager].selectedDirectory === this.$store.state.fm.settings.rootPath;
+            }
             return this.$store.state.fm[this.manager].selectedDirectory === null;
         },
     },
@@ -147,6 +151,11 @@ export default {
          * @param extension
          */
         selectAction(path, extension) {
+            // only the content index can be selected
+            if (this.$store.state.fm.settings.contentIndex && this.$store.state.fm.settings.contentIndex !== path) {
+                return;
+            }
+
             // if is set fileCallback
             if (this.$store.state.fm.fileCallback) {
                 this.$store

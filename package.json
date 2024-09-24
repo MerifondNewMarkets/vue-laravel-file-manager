@@ -14,16 +14,20 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:local": "vite build --mode development",
     "preview": "vite preview"
   },
   "dependencies": {
     "axios": "^1.6.2",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "codemirror": "^5.65.1",
     "codemirror-editor-vue3": "^2.1.7",
     "cropperjs": "^1.5.12",
     "mitt": "^3.0.0",
     "plyr": "^3.6.12",
     "vue": "^3.2.25",
+    "vue3-pdf-app": "^1.0.3",
     "vuex": "^4.0.2"
   },
   "devDependencies": {

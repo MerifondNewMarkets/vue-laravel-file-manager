@@ -34,6 +34,24 @@ export default {
             // axios headers
             headers: {},
 
+            // rootPath => Lock User in Subdirectory
+            rootPath: null,
+
+            // recordType the type of the viewed record
+            recordType: null,
+
+            // recordId the ID of the viewed record
+            recordId: null,
+
+            // May the user only read or write
+            hasWriteAccess: null,
+
+            // Path to the content index file
+            contentIndex: '',
+
+            // Are we in File Explorer or in Select mode
+            isSelectMode: null,
+
             // axios default URL
             baseUrl: null,
 
@@ -80,29 +98,25 @@ export default {
                         icon: 'bi-folder2-open',
                     },
                     {
-                        name: 'audioPlay',
-                        icon: 'bi-play',
+                        name: 'addToCart',
+                        icon: 'bi-cart-plus',
                     },
                     {
-                        name: 'videoPlay',
-                        icon: 'bi-play',
+                        name: 'setAsContentIndex',
+                        icon: 'bi-bookmark-star',
+                    },
+                    {
+                        name: 'viewContentIndex',
+                        icon: 'bi-eye',
                     },
                     {
                         name: 'view',
                         icon: 'bi-eye',
                     },
-                    {
-                        name: 'edit',
-                        icon: 'bi-pen',
-                    },
-                    {
-                        name: 'select',
-                        icon: 'bi-check2',
-                    },
-                    {
-                        name: 'download',
-                        icon: 'bi-download',
-                    },
+                    // {
+                    //     name: 'select',
+                    //     icon: 'bi-check2',
+                    // },
                 ],
                 [
                     {
@@ -121,26 +135,6 @@ export default {
                         name: 'paste',
                         icon: 'bi-clipboard',
                     },
-                    {
-                        name: 'zip',
-                        icon: 'bi-file-zip',
-                    },
-                    {
-                        name: 'unzip',
-                        icon: 'bi-file-zip-fill',
-                    },
-                ],
-                [
-                    {
-                        name: 'delete',
-                        icon: 'bi-trash text-danger',
-                    },
-                ],
-                [
-                    {
-                        name: 'properties',
-                        icon: 'bi-card-list',
-                    },
                 ],
             ],
 
@@ -148,53 +142,53 @@ export default {
             imageExtensions: ['png', 'jpg', 'jpeg', 'gif', 'webp'],
 
             // Image extensions for cropping
-            cropExtensions: ['png', 'jpg', 'jpeg', 'webp'],
+            cropExtensions: [],
 
             // audio extensions for play
-            audioExtensions: ['ogg', 'mp3', 'aac', 'wav'],
+            audioExtensions: [],
 
             // video extensions for play
-            videoExtensions: ['webm', 'mp4'],
+            videoExtensions: [],
 
             // File extensions for code editor
             textExtensions: {
-                sh: 'text/x-sh',
-                // styles
-                css: 'text/css',
-                less: 'text/x-less',
-                sass: 'text/x-sass',
-                scss: 'text/x-scss',
-                html: 'text/html',
-                // js
-                js: 'text/javascript',
-                ts: 'text/typescript',
-                vue: 'text/x-vue',
-                // text
-                htaccess: 'text/plain',
-                env: 'text/plain',
-                txt: 'text/plain',
-                log: 'text/plain',
-                ini: 'text/x-ini',
-                xml: 'application/xml',
-                md: 'text/x-markdown',
-                // c-like
-                java: 'text/x-java',
-                c: 'text/x-csrc',
-                cpp: 'text/x-c++src',
-                cs: 'text/x-csharp',
-                scl: 'text/x-scala',
-                php: 'application/x-httpd-php',
-                // DB
-                sql: 'text/x-sql',
-                // other
-                pl: 'text/x-perl',
-                py: 'text/x-python',
-                lua: 'text/x-lua',
-                swift: 'text/x-swift',
-                rb: 'text/x-ruby',
-                go: 'text/x-go',
-                yaml: 'text/x-yaml',
-                json: 'application/json',
+                // sh: 'text/x-sh',
+                // // styles
+                // css: 'text/css',
+                // less: 'text/x-less',
+                // sass: 'text/x-sass',
+                // scss: 'text/x-scss',
+                // html: 'text/html',
+                // // js
+                // js: 'text/javascript',
+                // ts: 'text/typescript',
+                // vue: 'text/x-vue',
+                // // text
+                // htaccess: 'text/plain',
+                // env: 'text/plain',
+                // txt: 'text/plain',
+                // log: 'text/plain',
+                // ini: 'text/x-ini',
+                // xml: 'application/xml',
+                // md: 'text/x-markdown',
+                // // c-like
+                // java: 'text/x-java',
+                // c: 'text/x-csrc',
+                // cpp: 'text/x-c++src',
+                // cs: 'text/x-csharp',
+                // scl: 'text/x-scala',
+                // php: 'application/x-httpd-php',
+                // // DB
+                // sql: 'text/x-sql',
+                // // other
+                // pl: 'text/x-perl',
+                // py: 'text/x-python',
+                // lua: 'text/x-lua',
+                // swift: 'text/x-swift',
+                // rb: 'text/x-ruby',
+                // go: 'text/x-go',
+                // yaml: 'text/x-yaml',
+                // json: 'application/json',
             },
         };
     },

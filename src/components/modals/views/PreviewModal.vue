@@ -147,18 +147,21 @@ export default {
 </script>
 
 <style lang="scss">
-.fm-modal-preview {
-    .modal-body {
-        padding: 0;
+#fm {
+    .fm-modal-preview {
+        .modal-body {
+            padding: 0;
 
-        img {
-            max-width: 100%;
+            img {
+                max-width: 100%;
+            }
+        }
+
+        & > .d-flex {
+            padding: 1rem;
+            border-top: 1px solid #e9ecef;
         }
     }
-
-    & > .d-flex {
-        padding: 1rem;
-        border-top: 1px solid #e9ecef;
-    }
 }
+
 </style>

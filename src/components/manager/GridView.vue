@@ -102,41 +102,43 @@ export default {
 </script>
 
 <style lang="scss">
-.fm-grid {
-    padding-top: 1rem;
+#fm {
+    .fm-grid {
+        padding-top: 1rem;
 
-    .fm-grid-item {
-        position: relative;
-        width: 125px;
-        padding: 0.4rem;
-        margin-bottom: 1rem;
-        margin-right: 1rem;
-        border-radius: 5px;
+        .fm-grid-item {
+            position: relative;
+            width: 125px;
+            padding: 0.4rem;
+            margin-bottom: 1rem;
+            margin-right: 1rem;
+            border-radius: 5px;
 
-        &.active {
-            background-color: #cff4fc;
-            box-shadow: 3px 2px 5px gray;
-        }
+            &.active {
+                background-color:var(--bs-info-bg-subtle);
+                box-shadow: 3px 2px 5px gray;
+            }
 
-        &:not(.active):hover {
-            background-color: #f8f9fa;
-            box-shadow: 3px 2px 5px gray;
-        }
+            &:not(.active):hover {
+                background-color: #f8f9fa;
+                box-shadow: 3px 2px 5px gray;
+            }
 
-        .fm-item-icon {
-            font-size: 5rem;
-            cursor: pointer;
-        }
+            .fm-item-icon {
+                font-size: 5rem;
+                cursor: pointer;
+            }
 
-        .fm-item-icon > i,
-        .fm-item-icon > figure > i {
-            color: #6c757d;
-        }
+            .fm-item-icon > i,
+            .fm-item-icon > figure > i {
+                color: #6c757d;
+            }
 
-        .fm-item-info {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+            .fm-item-info {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
         }
     }
 }
