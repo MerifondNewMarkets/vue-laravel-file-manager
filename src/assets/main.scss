@@ -177,4 +177,12 @@
 
 #fm {
     @import "/node_modules/bootstrap/scss/bootstrap.scss";
+    .fm-modal._accept_terms_modal,
+    .fm-modal._view_pdf_modal {
+      position: fixed;
+    }
+    .fm-modal._accept_terms_modal .modal-content,
+    .fm-modal._view_pdf_modal .modal-content {
+      height: 80vh;
+    }
 }

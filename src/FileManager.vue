@@ -80,6 +80,12 @@ export default {
                 return '/';
             },
         },
+        baseUrl: {
+            type: String,
+            default() {
+                return '/';
+            },
+        },
         contentIndex: {
             type: String,
             default() {
@@ -144,6 +150,7 @@ export default {
             this.$store.commit('fm/settings/manualSettings', {
                 ...this.mergedSettings,
                 rootPath: event.detail.rootPath,
+                baseUrl: event.detail.baseUrl,
                 contentIndex: event.detail.contentIndex,
                 windowsConfig: parseInt(event.detail.windowsConfigParam) || 2,
                 isSelectMode: event.detail.isSelectMode,
@@ -185,6 +192,7 @@ export default {
                 rootPath: this.rootPath,
                 recordType: this.recordType,
                 recordId: this.recordId,
+                baseUrl: this.baseUrl,
                 contentIndex: this.contentIndex,
                 windowsConfig: parseInt(this.windowsConfigParam) ?? 2,
                 hasWriteAccess: this.hasWriteAccess,

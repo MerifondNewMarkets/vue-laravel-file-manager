@@ -7,7 +7,7 @@
         <div class="modal-body pdf-modal-body" >
             <div id="pdf-wrapper">
                 <vue-pdf-app
-                    style="height: 100vh;"
+                    style="height: 70vh;"
                     :pdf="pdfSrc"
                     @pages-rendered="pagesRendered"
                     :config="pdfConfig"
