@@ -115,7 +115,7 @@ export default {
             border-radius: 5px;
 
             &.active {
-                background-color: #cff4fc;
+                background-color:var(--bs-info-bg-subtle);
                 box-shadow: 3px 2px 5px gray;
             }
 

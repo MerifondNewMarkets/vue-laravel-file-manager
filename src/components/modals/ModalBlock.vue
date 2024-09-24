@@ -1,6 +1,6 @@
 <template>
     <transition name="fm-modal">
-        <div class="fm-modal modal" ref="fmModal" v-on:click="hideModal">
+        <div class="fm-modal modal" :class="modalClass" ref="fmModal" v-on:click="hideModal">
             <div class="modal-dialog" role="document" v-bind:class="modalSize" v-on:click.stop>
                 <component v-bind:is="modalName" />
             </div>
@@ -60,6 +60,16 @@ export default {
         modalName() {
             return this.$store.state.fm.modal.modalName;
         },
+
+        modalClass () {
+            return this.modalName.replace(/[^a-z0-9]/g, function(s) {
+                var c = s.charCodeAt(0);
+                if (c == 32) return '-';
+                if (c >= 65 && c <= 90) return '_' + s.toLowerCase();
+                return '__' + ('000' + c.toString(16)).slice(-4);
+            });
+        },
+
 
         /**
          * Modal size style
