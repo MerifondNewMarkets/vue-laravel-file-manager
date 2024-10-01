@@ -78,7 +78,10 @@
                     </button>
                 </div>
             </div>
-            <div class="col-auto text-right">
+            <div
+                v-if="$store.getters['fm/settings/hasWriteAccess']"
+                class="col-auto text-right"
+            >
                 <div class="btn-group" role="group">
                     <button
                         v-if="isInSelectMode"
@@ -113,6 +116,7 @@ export default {
     data() {
         return {
             oldRootPath: '',
+            oldDisk: '',
         }
     },
     computed: {
@@ -247,7 +251,8 @@ export default {
             const cb = () => {
                 this.oldRootPath = `${this.$store.getters['fm/settings/rootPath']}`;
                 this.$store.commit('fm/settings/manualSettings', {
-                    rootPath: '/',
+                    rootPath: '',
+                    selectedDisk: 'bauarchive',
                     isSelectMode: true,
                 });
             }
@@ -262,10 +267,16 @@ export default {
         endSelectMode() {
             this.$store.commit('fm/settings/manualSettings', {
                 rootPath: this.oldRootPath,
+                selectedDisk: 'bauarchive',
                 isSelectMode: false,
             });
-            this.$store.dispatch('fm/left/selectDirectory', { path: this.oldRootPath, history: true });
-            this.$store.dispatch('fm/right/selectDirectory', { path: this.oldRootPath, history: true });
+
+            this.$store.commit('fm/left/setDisk', 'bauarchive');
+            this.$store.commit('fm/right/setDisk', 'bauarchive');
+
+            this.$store.dispatch('fm/left/selectDirectory', { path: this.oldRootPath, history: false });
+            this.$store.dispatch('fm/right/selectDirectory', { path: this.oldRootPath, history: false });
+
         },
 
         /**
