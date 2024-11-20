@@ -5,7 +5,7 @@
 const de = {
     btn: {
         about: 'Über',
-        addToCart: 'in die Dokumentenmappe',
+        addToCart: 'in den Warekorb',
         setAsContentIndex: 'Als Inhaltsverzeichnis festlegen',
         back: 'Zurück',
         cancel: 'Abbrechen',
@@ -35,7 +35,7 @@ const de = {
         title: 'Zwischenablage',
     },
     contextMenu: {
-        addToCart: 'in die Dokumentenmappe',
+        addToCart: 'in den Warekorb',
         setAsContentIndex: 'Als Inhaltsverzeichnis festlegen',
         viewContentIndex: 'Inhaltsverzeichnis anzeigen',
         copy: 'Kopieren',
