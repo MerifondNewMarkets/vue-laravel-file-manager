@@ -8,8 +8,11 @@ export default {
      * @param disk
      * @returns {Promise}
      */
-    initTree({ state, commit }, disk) {
-        return GET.tree(disk, null).then((response) => {
+    initTree({ state, commit }, {disk, path}) {
+        if (path) {
+            path = path.split('/').slice(0, -1).join('/');
+        }
+        return GET.tree(disk, path).then((response) => {
             // if the action was successful
             if (response.data.result.status === 'success') {
                 // clean the tree, if need
@@ -55,7 +58,7 @@ export default {
                     },
                 });
             } else {
-                commit('fm/messages/setError', { message: 'Directory not found' }, { root: true });
+                commit('fm/messages/setError', { message: 'Directory not found3' }, { root: true });
             }
         } else {
             // add a new directory to the root of the disk
@@ -172,7 +175,6 @@ export default {
         const promise = Promise.resolve();
         // find parent directory index
         const parentDirectoryIndex = getters.findDirectoryIndex(path);
-
         if (parentDirectoryIndex !== -1) {
             // Are the subdirectories loaded?
             if (state.directories[parentDirectoryIndex].props.subdirectoriesLoaded) {
@@ -200,7 +202,7 @@ export default {
                 });
             }
         } else {
-            commit('fm/messages/setError', { message: 'Directory not found' }, { root: true });
+            // commit('fm/messages/setError', { message: 'Directory not found s' }, { root: true });
         }
 
         return promise;
@@ -225,7 +227,7 @@ export default {
                 },
             });
         } else {
-            commit('fm/messages/setError', { message: 'Directory not found' }, { root: true });
+            commit('fm/messages/setError', { message: 'Directory not founda' }, { root: true });
         }
     },
 

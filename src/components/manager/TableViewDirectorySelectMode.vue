@@ -92,7 +92,7 @@ export default {
                 modalName: 'SetRootPathConfirmModal',
                 data: { selectedItems: item },
                 show: true,
-                callback: () => this.$store.dispatch(`fm/${this.$store.state.fm.activeManager}/emitSelect`, { path: item }),
+                callback: this.$store.dispatch(`fm/${this.$store.state.fm.activeManager}/emitSelect`, { path: item }),
             });
         },
         isSelectable (directory) {

@@ -66,7 +66,7 @@ export default {
                 } else if (state.settings.windowsConfig === 2) {
                     // if selected left manager and directories tree
                     // init directories tree
-                    dispatch('tree/initTree', leftDisk, state.settings.rootPath).then(() => {
+                    dispatch('tree/initTree', {disk: leftDisk, path: state.settings.rootPath}, ).then(() => {
                         if (leftPath) {
                             // reopen folders if path not null
                             dispatch('tree/reopenPath', leftPath);
@@ -112,7 +112,7 @@ export default {
 
                 // reinitialize tree if directories tree is shown
                 if (state.settings.windowsConfig === 2) {
-                    dispatch('tree/initTree', disk, state.settings.rootPath);
+                    dispatch('tree/initTree', {disk, path: state.settings.rootPath});
                 }
 
                 // download content for root path
@@ -446,7 +446,7 @@ export default {
     refreshAll({ state, getters, dispatch }) {
         if (state.settings.windowsConfig === 2) {
             // refresh tree
-            return dispatch('tree/initTree', state.left.selectedDisk, state.settings.rootPath).then(() =>
+            return dispatch('tree/initTree', {disk: state.left.selectedDisk, path: state.settings.rootPath}).then(() =>
                 Promise.all([
                     // reopen folders if need
                     dispatch('tree/reopenPath', getters.selectedDirectory),

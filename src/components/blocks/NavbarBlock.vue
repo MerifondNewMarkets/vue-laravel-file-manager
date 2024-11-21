@@ -255,6 +255,7 @@ export default {
                     selectedDisk: 'bauarchive',
                     isSelectMode: true,
                 });
+                this.$store.dispatch('fm/tree/initTree', { disk: 'bauarchive' });
             }
 
             this.$store.commit('fm/modal/setModalState', {
@@ -270,6 +271,8 @@ export default {
                 selectedDisk: 'bauarchive',
                 isSelectMode: false,
             });
+
+            this.$store.dispatch('fm/tree/initTree', { disk: 'bauarchive', path: this.oldRootPath });
 
             this.$store.commit('fm/left/setDisk', 'bauarchive');
             this.$store.commit('fm/right/setDisk', 'bauarchive');
